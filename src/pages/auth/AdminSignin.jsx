@@ -93,6 +93,7 @@ const AdminSignin = () => {
                 ) : (
                   <button
                     type="submit"
+                    disabled
                     className="w-full py-2 lg:py-2 xl:py-3 bg-[#d69a6a] text-white rounded-lg"
                   >
                     <SyncLoader color="#fff" size={10} />

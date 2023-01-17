@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Posts from "../../components/admin/Home/Posts";
 import AddPost from "../../components/admin/modals/AddPost";
+import { fetchAllPosts } from "../../redux/PostSlice";
 
 const DashboardHome = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    dispatch(fetchAllPosts(setLoading));
+  }, [dispatch]);
+  const { loadingPosts, allPosts } = useSelector((state) => state.post);
   const data = [
     {
       id: 1,
@@ -63,7 +71,7 @@ const DashboardHome = () => {
     <div className="w-full  h-full mt-20">
       <div className="w-full h-full flex justify-between items-center">
         <div className="w-[80%] h-full ">
-          <Posts data={data} />
+          <Posts data={allPosts} loading={loading} />
         </div>
         <div className="w-[15%] relative flex items-center justify-center h-full ">
           <AddPost />

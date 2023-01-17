@@ -25,7 +25,7 @@ const Navbar = () => {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />
-      <nav
+      <header
         className={`w-full h-[6rem]  flex  fixed top-0 z-50 transition-all  ${
           isScrolled &&
           "border-b border-b-gray-500 bg-white/80 backdrop-blur-sm "
@@ -97,7 +97,7 @@ const Navbar = () => {
             <RxHamburgerMenu className="w-7 h-7" />
           </button>
         </div>
-      </nav>
+      </header>
     </div>
   );
 };

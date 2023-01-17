@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import News from "./pages/News";
@@ -15,9 +15,14 @@ import DashboardTeam from "./pages/admin/DashboardTeam";
 import DashboardCategory from "./pages/admin/DashboardCategory";
 import DashboardQuiz from "./pages/admin/DashboardQuiz";
 import DashboardSettings from "./pages/admin/DashboardSettings";
+import { useSelector } from "react-redux";
 // import Dashboard from "./pages/admin/Dashboard";
 
 function App() {
+  const { token } = useSelector((state) => state.auth);
+  const RequireAuth = ({ children }) => {
+    return token != null ? children : <Navigate to="/adminauth" />;
+  };
   return (
     <div>
       <Routes>
@@ -25,12 +30,19 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="news" element={<News />} />
         <Route path="education" element={<Educaton />} />
-        <Route path="post" element={<SinglePost />} />
+        <Route path="post/:id" element={<SinglePost />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="quizquestions" element={<QuizQuestion />} />
         {/* admin */}
         <Route path="adminauth" element={<AdminSignin />} />
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
           <Route path="home" element={<DashboardHome />} />
           <Route path="team" element={<DashboardTeam />} />
           <Route path="categories" element={<DashboardCategory />} />

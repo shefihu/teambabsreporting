@@ -7,6 +7,7 @@ const initialState = {
   user: Cookies.get("userdetails")
     ? JSON.parse(Cookies.get("userdetails"))
     : null,
+  token: Cookies.get("token") ? JSON.parse(Cookies.get("token")) : null,
 };
 const authSlice = createSlice({
   name: "auth",
@@ -66,6 +67,9 @@ export const loginAction =
       console.log(response);
       dispatch(loginSuccess({ user: response.data }));
       Cookies.set("userdetails", JSON.stringify(response.data.data), {
+        expires: 2,
+      });
+      Cookies.set("token", JSON.stringify(response.data.data.token), {
         expires: 2,
       });
       window.location = "/dashboard/home";
