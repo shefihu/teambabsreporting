@@ -8,6 +8,12 @@ const DashboardHome = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+  useEffect(() => {
     dispatch(fetchAllPosts(setLoading));
   }, [dispatch]);
   const { loadingPosts, allPosts } = useSelector((state) => state.post);

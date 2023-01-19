@@ -4,10 +4,14 @@ import Cookies from "js-cookie";
 const initialState = {
   loading: false,
   loadingPosts: true,
+  loadinSingle: true,
+  loadingPostCat: true,
   loadingDelete: false,
   error: null,
   addpost: {},
   allPosts: [],
+  singlePost: {},
+  postByCat: [],
 };
 const postSlice = createSlice({
   name: "post",
@@ -41,6 +45,34 @@ const postSlice = createSlice({
       state.error = action.payload.error;
       state.allPosts = null;
     },
+    singlePostStart(state) {
+      state.loadinSingle = true;
+      state.error = null;
+    },
+    singlePostSuccess: (state, action) => {
+      state.loadinSingle = false;
+      state.error = null;
+      state.singlePost = action.payload.singlePost;
+    },
+    singlePostFailure(state, action) {
+      state.loadinSingle = false;
+      state.error = action.payload.error;
+      state.singlePost = null;
+    },
+    postByCatStart(state) {
+      state.loadingPostCat = true;
+      state.error = null;
+    },
+    postByCatSuccess: (state, action) => {
+      state.loadingPostCat = false;
+      state.error = null;
+      state.postByCat = action.payload.postByCat;
+    },
+    postByCatFailure(state, action) {
+      state.loadingPostCat = false;
+      state.error = action.payload.error;
+      state.postByCat = null;
+    },
   },
 });
 export const {
@@ -50,9 +82,15 @@ export const {
   allPostsStart,
   allPostsSuccess,
   allPostsFailure,
+  singlePostStart,
+  singlePostSuccess,
+  singlePostFailure,
+  postByCatStart,
+  postByCatSuccess,
+  postByCatFailure,
 } = postSlice.actions;
 export const postAction =
-  (formData, token, toast) => async (dispatch, getState) => {
+  (formData, token, toast, navigate) => async (dispatch, getState) => {
     try {
       dispatch(postStart());
 
@@ -67,10 +105,11 @@ export const postAction =
         }
       );
       dispatch(postSuccess({ addpost: response.data }));
+      window.location = "/dashboard/home";
     } catch (error) {
       console.log(error);
       toast.error(
-        error.response && error.response.data.message
+        error.response && error.response.data.message && error.message
           ? error.response.data.message
           : error.data
       );
@@ -90,5 +129,28 @@ export const fetchAllPosts = (setLoading) => async (dispatch) => {
     dispatch(allPostsFailure({ error }));
   }
   setLoading(false);
+};
+export const fetchSinglePost = (id) => async (dispatch) => {
+  try {
+    dispatch(singlePostStart());
+    const post = await axios.get(
+      `https://teambabs.onrender.com/api/post/post/${id}`
+    );
+
+    dispatch(singlePostSuccess({ singlePost: post?.data.data }));
+  } catch (error) {
+    dispatch(singlePostFailure({ error }));
+  }
+};
+export const fetchPostByCategory = (category) => async (dispatch) => {
+  try {
+    dispatch(postByCatStart());
+    const post = await axios.get(
+      `https://teambabs.onrender.com/api/post/category/${category}`
+    );
+    dispatch(postByCatSuccess({ postByCat: post?.data.data }));
+  } catch (error) {
+    dispatch(postByCatFailure({ error }));
+  }
 };
 export default postSlice.reducer;

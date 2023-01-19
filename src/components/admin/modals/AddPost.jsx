@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useRef, useState } from "react";
 import add from "../../../assets/images/addpost.png";
+import { useNavigate } from "react-router-dom";
 import { BiImages } from "react-icons/bi";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,8 +31,9 @@ export default function AddPost() {
   };
   const hiddenFileInput = React.useRef(null);
   const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const handleSubmit = () => {
-    dispatch(postAction(formData, token, toast));
+    dispatch(postAction(formData, token, toast, navigate));
   };
   const uploadImage = (e) => {
     setImage(e.target.files[0]);
@@ -146,6 +148,7 @@ export default function AddPost() {
                         <input
                           className="hidden"
                           type="file"
+                          required
                           onChange={(e) => {
                             uploadImage(e);
                           }}

@@ -23,10 +23,13 @@ const Post = () => {
           {allPosts.map((post, index) => {
             return (
               <>
-                <div className="min-h-[28rem] flex flex-col space-y-4 b">
+                <a
+                  href={`/post/${post.slug}`}
+                  className="min-h-[28rem] flex flex-col space-y-4 b"
+                >
                   <div className="w-full h-[23rem] bg-gray-200 overflow-hidden rounded-xl">
                     <img
-                      crossorigin="anonymous"
+                      crossOrigin="anonymous"
                       src={`https://teambabs.onrender.com/${post.image}`}
                       alt=""
                       className="w-full h-full object-cover "
@@ -45,7 +48,7 @@ const Post = () => {
                       {post.body.length >= 120 && "..."}
                     </p>
                   </div>
-                </div>
+                </a>
               </>
             );
           })}
