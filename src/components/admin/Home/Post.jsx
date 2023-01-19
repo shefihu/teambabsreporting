@@ -1,6 +1,7 @@
 import React from "react";
 import { BiTrash } from "react-icons/bi";
 import { SlNote } from "react-icons/sl";
+import DeletePost from "../modals/DeletPost";
 const Post = ({ post, loading }) => {
   return (
     <div>
@@ -23,9 +24,7 @@ const Post = ({ post, loading }) => {
                 <button>
                   <SlNote className="w-[28px] h-[28px]" />
                 </button>
-                <button>
-                  <BiTrash className="w-[28px] h-[28px]" />
-                </button>
+                <DeletePost id={post.slug} />
               </div>
             </div>
           </div>

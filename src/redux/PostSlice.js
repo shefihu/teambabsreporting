@@ -11,6 +11,7 @@ const initialState = {
   addpost: {},
   allPosts: [],
   singlePost: {},
+  deletePost: {},
   postByCat: [],
 };
 const postSlice = createSlice({
@@ -30,6 +31,20 @@ const postSlice = createSlice({
       state.loading = false;
       state.error = action.payload.error;
       state.addpost = null;
+    },
+    deletePostStart(state) {
+      state.loadingDelete = true;
+      state.error = null;
+    },
+    deletePostSuccess(state, action) {
+      state.loadingDelete = false;
+      state.error = null;
+      state.deletePost = action.payload.deletePost;
+    },
+    deletePostFailure(state, action) {
+      state.loadingDelete = false;
+      state.error = action.payload.error;
+      state.deletePost = null;
     },
     allPostsStart(state) {
       state.loadingPosts = true;
@@ -88,6 +103,9 @@ export const {
   postByCatStart,
   postByCatSuccess,
   postByCatFailure,
+  deletePostStart,
+  deletePostSuccess,
+  deletePostFailure,
 } = postSlice.actions;
 export const postAction =
   (formData, token, toast, navigate) => async (dispatch, getState) => {
@@ -114,6 +132,36 @@ export const postAction =
           : error.data
       );
       dispatch(postFailure({ error }));
+    }
+  };
+export const deletePost =
+  (id, token, toast, setIsOpen) => async (dispatch, getState) => {
+    try {
+      dispatch(deletePostStart());
+
+      const response = await axios.delete(
+        `https://teambabs.onrender.com/api/post/post/${id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(deletePostSuccess({ deletePost: response.data }));
+      if (response.status === "200") {
+        setIsOpen(false);
+      }
+      window.location = "/dashboard/home";
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error.response && error.response.data.message && error.message
+          ? error.response.data.message
+          : error.data
+      );
+      dispatch(deletePostFailure({ error }));
     }
   };
 export const fetchAllPosts = (setLoading) => async (dispatch) => {
