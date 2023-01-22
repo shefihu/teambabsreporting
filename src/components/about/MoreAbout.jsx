@@ -1,5 +1,5 @@
 import React from "react";
-
+import babs from "../../assets/images/babs.JPG";
 const MoreAbout = () => {
   return (
     <div className="">
@@ -25,7 +25,9 @@ const MoreAbout = () => {
           </div>
           <div className="w-full lg:flex hidden justify-between items-center h-[18rem]  mt-20">
             <div className="w-[16rem] h-[5rem] justify-between items-center  flex">
-              <div className=" w-[5rem] h-full rounded-full bg-gray-200"></div>
+              <div className=" w-[5rem] h-full rounded-full overflow-hidden bg-gray-200">
+                <img src={babs} alt="" className="w-full h-full object-cover" />
+              </div>
               <div className="w-[10rem] space-y-3">
                 <h4 className="text-[15px] font-bold">Babatunde salaudeen</h4>
                 <h4 className="text-sm">Chief Editor</h4>
@@ -58,7 +60,9 @@ const MoreAbout = () => {
               sphere.”
             </p>
             <div className="w-[16rem] h-[5rem] mt-10 justify-between items-center  flex">
-              <div className=" w-[5rem] h-full rounded-full bg-gray-200"></div>
+              <div className=" w-[5rem] h-full rounded-full overflow-hidden bg-gray-200">
+                <img src={babs} alt="" className="w-full h-full object-cover" />
+              </div>
               <div className="w-[10rem] space-y-3">
                 <h4 className="text-[15px] font-bold">Babatunde salaudeen</h4>
                 <h4 className="text-sm">Chief Editor</h4>

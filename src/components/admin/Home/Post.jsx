@@ -7,7 +7,7 @@ const Post = ({ post, loading }) => {
   return (
     <div>
       <div className="w-full h-[275px] py-6 border-b border-b-[#808080]">
-        <div className="w-full flex h-full items-center">
+        <div className="w-full  flex h-full items-center">
           <div className="w-[80%] flex flex-col justify-between h-full">
             <h1 className="text-[32px] font-bold truncate">{post.title}</h1>
             <p className="text-[20px] h-20 ">

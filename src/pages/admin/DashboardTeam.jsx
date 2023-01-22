@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader, ClockLoader, PropagateLoader } from "react-spinners";
-import { fetchTeams } from "../../redux/teamSlice";
+import Addadmin from "../../components/admin/modals/AddTeam";
+import DeleteAdmin from "../../components/admin/modals/DeleteAdmin";
+import { deleteAdmin, fetchTeams } from "../../redux/teamSlice";
 
 const DashboardTeam = () => {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
-  const { admins, loadingAdmins } = useSelector((state) => state.team);
-
+  const { admins, loadingAdmins, loadingDelete } = useSelector(
+    (state) => state.team
+  );
+  const handleDelete = (id) => {
+    dispatch(deleteAdmin(id, token));
+  };
   useEffect(() => {
     dispatch(fetchTeams(token));
   }, [dispatch, token]);
@@ -15,11 +21,7 @@ const DashboardTeam = () => {
     <div>
       <section className="container mx-auto p-6 mt-20 font-mono">
         <div className="w-full flex justify-end">
-          {user?.role === 1 && (
-            <button className="w-[141px] py-2 bg-[#191919] text-white font-bold">
-              Add member
-            </button>
-          )}
+          <Addadmin user={user} />
         </div>
         <div className="w-full overflow-hidden mt-10 rounded-lg ">
           <div className="w-full overflow-x-auto">
@@ -83,9 +85,9 @@ const DashboardTeam = () => {
 
                           <td className="px-4 py-3 text-sm ">
                             {user?.role === 1 && admin.super === 0 ? (
-                              <button className="bg-red-700 w-[160px] rounded-[8px] py-2 text-[16px] font-bold text-white">
-                                Delete
-                              </button>
+                              <>
+                                <DeleteAdmin id={admin.slug} />
+                              </>
                             ) : (
                               <div></div>
                             )}

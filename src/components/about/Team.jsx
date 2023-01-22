@@ -15,10 +15,14 @@ const Team = () => {
           <div className="lg:grid mt-14 grid-cols-3 w-full gap-10 ">
             <div className="min-h-[25rem] flex flex-col space-y-4 b">
               <div className="w-full h-[20rem] bg-gray-200 overflow-hidden rounded-xl">
-                <img src={babs} alt="" className="w-full h-full object-cover" />
+                <img
+                  src={babs}
+                  alt=""
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Babatunde Salaudeen</h1>
+                <h1 className="text-xl font-bold">Salaudeen Ashiri Babs</h1>
                 <p>Founder & Chief Editor</p>
               </div>
             </div>
@@ -27,11 +31,11 @@ const Team = () => {
                 <img
                   src={roffy}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Salaudeen Rofiat</h1>
+                <h1 className="text-xl font-bold">Salaudeen Rofiat Taiye</h1>
                 <p>Editor & Publisher</p>
               </div>
             </div>
@@ -40,7 +44,7 @@ const Team = () => {
                 <img
                   src={praise}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div>
@@ -53,18 +57,22 @@ const Team = () => {
                 <img
                   src={sammy}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Adepoju Samuel</h1>
+                <h1 className="text-xl font-bold">
+                  Adepoju Oluwatimilehin Samuel
+                </h1>
                 <p>Editor & Publisher</p>
               </div>
             </div>
             <div className="min-h-[25rem] flex flex-col space-y-4 b">
               <div className="w-full h-[20rem] bg-gray-200 rounded-xl"></div>
               <div>
-                <h1 className="text-xl font-bold">Ajilogba Abdulhamid</h1>
+                <h1 className="text-xl font-bold">
+                  Ajilogba Abdul-Hamid Adewale
+                </h1>
                 <p>Editor & Publisher</p>
               </div>
             </div>
@@ -73,11 +81,11 @@ const Team = () => {
                 <img
                   src={admiral}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Afolabi Victor</h1>
+                <h1 className="text-xl font-bold">Afolabi Victor Ayodele</h1>
                 <p>Editor & Publisher</p>
               </div>
             </div>
