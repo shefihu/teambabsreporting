@@ -39,6 +39,34 @@ const MoreAbout = () => {
           </div>
         </div>
       </div>
+      <div className="w-full h-full md:hidden px-3  flex">
+        <div className="w-full h-full">
+          <div className="w-full h-full py-5 border-b border-b-black">
+            <div className="w-[60%] h-20">
+              <h1 className="text-[30px] font-bold">Together we’re strong</h1>
+            </div>
+            <p className="text-[20px] font-bold mt-7">
+              Our crew is always getting bigger, but we all work toward one
+              goal: to provide information and news to student in Nigeria
+              Universities.{" "}
+            </p>
+          </div>
+          <div className="w-full flex flex-col items-center px-3">
+            <p className="text-[20px] text-center font-bold mt-7">
+              “Babs is an online outlet that is tasked with the responsibility
+              of bringing you timely and up to date information in the academic
+              sphere.”
+            </p>
+            <div className="w-[16rem] h-[5rem] mt-10 justify-between items-center  flex">
+              <div className=" w-[5rem] h-full rounded-full bg-gray-200"></div>
+              <div className="w-[10rem] space-y-3">
+                <h4 className="text-[15px] font-bold">Babatunde salaudeen</h4>
+                <h4 className="text-sm">Chief Editor</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

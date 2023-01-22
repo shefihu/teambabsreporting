@@ -16,6 +16,7 @@ import DashboardCategory from "./pages/admin/DashboardCategory";
 import DashboardQuiz from "./pages/admin/DashboardQuiz";
 import DashboardSettings from "./pages/admin/DashboardSettings";
 import { useSelector } from "react-redux";
+import Category from "./pages/Category";
 // import Dashboard from "./pages/admin/Dashboard";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="news" element={<News />} />
         <Route path="education" element={<Educaton />} />
         <Route path="post/:id" element={<SinglePost />} />
+        <Route path="category/:category" element={<Category />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="quizquestions" element={<QuizQuestion />} />
         {/* admin */}

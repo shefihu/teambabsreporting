@@ -1,22 +1,62 @@
-import React, { useRef, useState } from "react";
+import Cookies from "js-cookie";
+import React, { useEffect, useRef, useState } from "react";
 import { quiz } from "../data/quiz";
 import Navbar from "../layout/Navbar";
 
 const QuizQuestion = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const currentQuestion = quiz[currentIndex];
-  const refs = useRef(quiz.map(() => React.createRef()));
+  const disabled = currentIndex === 0;
+  const disabledNext = currentIndex === quiz.length - 1;
+  const [answers, setAnswers] = useState([
+    {
+      question: null,
+      answer: null,
+      option1: null,
+      option2: null,
+      option3: null,
+      option4: null,
+      optionSelected: null,
+    },
+  ]);
+  useEffect(() => {
+    setAnswers(quiz);
+    Cookies.set("answers", JSON.stringify(answers), {
+      expires: 3 / (60 * 24),
+    });
+  }, []);
 
-  const handleNext = (ref) => {
-    setCurrentIndex(currentIndex + 1);
-    ref.current.scrollIntoView();
+  useEffect(() => {
+    console.log(answers);
+  }, [answers]);
+
+  const isChecked = (currentIndex, optionNumber) => {
+    if (answers[currentIndex].optionSelected == optionNumber) {
+    } else {
+      return false;
+    }
   };
 
-  const handlePrevious = (ref) => {
-    setCurrentIndex(currentIndex - 1);
-    ref.current.scrollIntoView();
+  const radioChangeHandler = (index, status, option) => {
+    if (status == true) {
+      let items = [...answers];
+      let item = { ...items[index] };
+      item.optionSelected = option;
+      items[index] = item;
+      setAnswers(items);
+      Cookies.set("answers", JSON.stringify(answers), {
+        expires: 3 / (60 * 24),
+      });
+    } else {
+      let items = [...answers];
+      let item = { ...items[index] };
+      item.optionSelected = null;
+      items[index] = item;
+      setAnswers(items);
+      Cookies.set("answers", JSON.stringify(answers), {
+        expires: 3 / (60 * 24),
+      });
+    }
   };
-
   return (
     <div>
       <Navbar />
@@ -26,59 +66,101 @@ const QuizQuestion = () => {
         </div>
       </div>
       <div className="mt-20">
-        {quiz.map((question, index) => {
+        {answers.map((question, index) => {
           return (
             <div
               key={index}
-              ref={refs.current[index]}
-              className="w-full border-t h-[35rem]  border-b border-t-black border-b-black"
+              className={`${index == currentIndex ? "" : "hidden"}`}
             >
-              <div className="w-full max-w-[85rem]  mx-auto h-full">
+              <div className="w-full max-w-[85rem] flex flex-col justify-center  mx-auto h-full">
                 <div className="flex space-x-4 items-center">
                   <h1 className="text-xl">{question.id}.</h1>
                   <h1 className="text-2xl">{question.question}</h1>
                 </div>
-                <div className="flex flex-col space-y-5 mt-6">
+                <div className="flex  flex-col space-y-5 mt-6">
                   <div className="flex items-center space-x-5">
-                    <input type="radio" />
+                    <input
+                      type="radio"
+                      checked={isChecked(index, 1)}
+                      onChange={(e) => {
+                        radioChangeHandler(index, e.target.checked, 1);
+                      }}
+                    />
                     <label htmlFor="" className="text-2xl">
                       {question.option1}
                     </label>
                   </div>
                   <div className="flex items-center space-x-5">
-                    <input type="radio" />
+                    <input
+                      type="radio"
+                      onChange={(e) => {
+                        radioChangeHandler(index, e.target.checked, 2);
+                      }}
+                      checked={isChecked(index, 2)}
+                    />
                     <label htmlFor="" className="text-2xl">
                       {question.option2}
                     </label>
                   </div>
                   <div className="flex items-center space-x-5">
-                    <input type="radio" />
+                    <input
+                      type="radio"
+                      checked={isChecked(index, 3)}
+                      onChange={(e) => {
+                        radioChangeHandler(index, e.target.checked, 3);
+                      }}
+                    />
                     <label htmlFor="" className="text-2xl">
                       {question.option3}
                     </label>
                   </div>
                   <div className="flex items-center space-x-5">
-                    <input type="radio" />
+                    <input
+                      type="radio"
+                      checked={isChecked(index, 4)}
+                      onChange={(e) => {
+                        radioChangeHandler(index, e.target.checked, 4);
+                      }}
+                    />
                     <label htmlFor="" className="text-2xl">
                       {question.option4}
                     </label>
                   </div>
                 </div>
-                <div className="w-[14rem]  h-full flex items-center justify-between">
+                <div className="w-[14rem]  mt-10 flex items-center justify-between">
                   <button
-                    onClick={() => handleNext(refs.current[currentIndex])}
-                    disabled={currentIndex === quiz.length - 1}
-                    className="px-4 h-10 bg-blue-900 text-white font-bold rounded-lg "
-                  >
-                    Next
-                  </button>
-                  <button
-                    onClick={() => handlePrevious(refs.current[currentIndex])}
-                    disabled={currentIndex === 0}
-                    className="px-4 h-10 bg-blue-900 text-white font-bold rounded-lg"
+                    onClick={() => setCurrentIndex(index - 1)}
+                    disabled={disabled}
+                    className={` ${
+                      disabled
+                        ? "bg-gray-400 px-4 cursor-not-allowed h-10 text-white font-bold rounded-lg"
+                        : "px-4 h-10 bg-blue-900 text-white font-bold rounded-lg "
+                    }`}
                   >
                     Previous
                   </button>
+                  {!disabledNext ? (
+                    <button
+                      onClick={() => setCurrentIndex(index + 1)}
+                      disabled={disabledNext}
+                      className={` ${
+                        disabledNext
+                          ? "bg-gray-400 px-4 cursor-not-allowed h-10 text-white font-bold rounded-lg"
+                          : "px-4 h-10 bg-blue-900 text-white font-bold rounded-lg "
+                      }`}
+                    >
+                      Next
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setCurrentIndex(index + 1)}
+                      className={`
+                           px-4 h-10 bg-blue-900 text-white font-bold rounded-lg 
+                      }`}
+                    >
+                      Submit
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

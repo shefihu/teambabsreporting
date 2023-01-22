@@ -32,9 +32,9 @@ const Navbar = () => {
         }`}
       >
         <div className="w-full xl:max-w-[85rem] px-6 lg:px-4 mx-auto flex  justify-between items-center">
-          <div className="md:w-[15%]">
+          <a href="/" className="md:w-[15%]">
             <img src={logo} alt="" />
-          </div>
+          </a>
           <div className="w-[80%] h-20  ">
             <ul className="md:flex hidden lg:space-x-16 md:space-x-10 text-lg items-center justify-end w-full h-full">
               <li>

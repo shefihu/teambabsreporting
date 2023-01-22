@@ -2,6 +2,7 @@ import React from "react";
 import { BiTrash } from "react-icons/bi";
 import { SlNote } from "react-icons/sl";
 import DeletePost from "../modals/DeletPost";
+import EditPost from "../modals/EditPost";
 const Post = ({ post, loading }) => {
   return (
     <div>
@@ -21,9 +22,12 @@ const Post = ({ post, loading }) => {
                 <p className="text-[18px] truncate">{post.posted_by}</p>
               </div>
               <div className="w-[124px] h-full space-x-3 flex items-center ">
-                <button>
-                  <SlNote className="w-[28px] h-[28px]" />
-                </button>
+                <EditPost
+                  body={post.body}
+                  image={post.image}
+                  title={post.title}
+                  slug={post.slug}
+                />
                 <DeletePost id={post.slug} />
               </div>
             </div>
@@ -33,7 +37,7 @@ const Post = ({ post, loading }) => {
               crossOrigin="anonymous"
               src={`https://teambabs.onrender.com/${post.image}`}
               alt=""
-              className="w-[150px] h-[150px]"
+              className="w-[150px] h-[150px] object-cover"
             />
           </div>
         </div>

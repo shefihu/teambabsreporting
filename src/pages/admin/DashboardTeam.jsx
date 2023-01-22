@@ -5,16 +5,23 @@ import { fetchTeams } from "../../redux/teamSlice";
 
 const DashboardTeam = () => {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
+  const { token, user } = useSelector((state) => state.auth);
   const { admins, loadingAdmins } = useSelector((state) => state.team);
-  console.log(admins);
+
   useEffect(() => {
     dispatch(fetchTeams(token));
   }, [dispatch, token]);
   return (
     <div>
       <section className="container mx-auto p-6 mt-20 font-mono">
-        <div className="w-full overflow-hidden rounded-lg ">
+        <div className="w-full flex justify-end">
+          {user?.role === 1 && (
+            <button className="w-[141px] py-2 bg-[#191919] text-white font-bold">
+              Add member
+            </button>
+          )}
+        </div>
+        <div className="w-full overflow-hidden mt-10 rounded-lg ">
           <div className="w-full overflow-x-auto">
             <table className="w-full ">
               <thead>
@@ -22,7 +29,7 @@ const DashboardTeam = () => {
                   <th className="px-4 py-3">Name/Role</th>
                   <th className="px-4 py-3">Phone</th>
                   <th className="px-4 py-3">Email</th>
-                  <th className="px-4 py-3">Status</th>
+                  {user?.role === 1 && <th className="px-4 py-3">Status</th>}
                 </tr>
               </thead>
               {loadingAdmins ? (
@@ -54,9 +61,13 @@ const DashboardTeam = () => {
                                 <p className="font-semibold text-black">
                                   {admin.name}
                                 </p>
-                                <p className="text-xs text-gray-600">
-                                  Developer
-                                </p>
+                                {admin.super === 1 ? (
+                                  <p className="text-xs text-gray-600">
+                                    Super Admin
+                                  </p>
+                                ) : (
+                                  <p className="text-xs text-gray-600">Admin</p>
+                                )}
                               </div>
                             </div>
                           </td>
@@ -69,7 +80,16 @@ const DashboardTeam = () => {
                               {admin.email}
                             </span>
                           </td>
-                          <td className="px-4 py-3 text-sm ">6/4/2000</td>
+
+                          <td className="px-4 py-3 text-sm ">
+                            {user?.role === 1 && admin.super === 0 ? (
+                              <button className="bg-red-700 w-[160px] rounded-[8px] py-2 text-[16px] font-bold text-white">
+                                Delete
+                              </button>
+                            ) : (
+                              <div></div>
+                            )}
+                          </td>
                         </tr>
                       );
                     })}

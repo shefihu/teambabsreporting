@@ -24,7 +24,24 @@ const Hero = () => {
           </div>
         </div>
         <div className="w-full mt-20">
-          <img src={about} alt="" />
+          <img src={about} alt="" className="w-full object-cover" />
+        </div>
+      </div>
+      <div className="w-full h-full md:hidden flex px-3 ">
+        <div className="w-full h-full py-4   pt-40 border-b border-b-black">
+          <h1 className="text-center font-bold text-[32.6px]">
+            We build a connection between
+            <span className="text-[#808080]">
+              &nbsp;the student and universities
+            </span>
+          </h1>
+          <p className="text-[16px] text-center mt-5">
+            To build a site that gives student the team that provide information
+            to create a happy relationship with the universities and the student{" "}
+          </p>
+          <div className="w-full mt-6">
+            <img src={about} alt="" className="w-full object-cover" />
+          </div>
         </div>
       </div>
     </div>

@@ -2,8 +2,8 @@ import React from "react";
 
 const Team = () => {
   return (
-    <div className="w-full py-10 bg-[#808080]/10">
-      <div className="w-full xl:max-w-[85rem] md:flex hidden h-full px-4 py-5 mx-auto ">
+    <div className="w-full py-10 md:bg-[#808080]/10">
+      <div className="w-full xl:max-w-[85rem] flex  h-full px-4 py-5 mx-auto ">
         <div className="w-full">
           <div className="w-[16rem]">
             <h1 className="text-4xl font-bold">Meet our amazing team</h1>
