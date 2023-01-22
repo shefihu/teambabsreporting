@@ -22,7 +22,7 @@ const AdminSignin = () => {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center ">
       <ToastContainer />
-      <div className="w-full max-w-[45rem] mt-8 h-[25rem] rounded-xl flex flex-col items-center bg--200 mx-auto">
+      <div className="w-full max-w-[45rem] px-4 mt-8 h-[25rem] rounded-xl flex flex-col items-center bg--200 mx-auto">
         <div>
           <img src={logo} alt="" />
         </div>
