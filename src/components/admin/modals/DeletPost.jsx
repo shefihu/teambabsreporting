@@ -26,7 +26,7 @@ export default function DeletePost({ id }) {
   return (
     <>
       <button onClick={openModal}>
-        <BiTrash className="w-[28px] h-[28px]" />
+        <BiTrash className="lg:w-[28px] lg:h-[28px] w-[20px] h-[20px]" />
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>

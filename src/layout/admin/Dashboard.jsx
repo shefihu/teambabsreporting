@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BiMenuAltRight } from "react-icons/bi";
+import { BiMenu, BiMenuAltRight } from "react-icons/bi";
 import { Outlet } from "react-router-dom";
 import SideNav from "./SideNav";
 
@@ -16,9 +16,9 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="w-full h-full relative lg:hidden  justify-between flex">
-        <div className="absolute top-14 left-4">
+        <div className="absolute top-6 left-4">
           <button onClick={() => setIsOpen(!isOpen)}>
-            <BiMenuAltRight className="w-8 h-8" />
+            <BiMenu className="w-8 h-8" />
           </button>
         </div>
         {isOpen && (

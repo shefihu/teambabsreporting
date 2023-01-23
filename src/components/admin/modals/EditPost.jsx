@@ -25,7 +25,7 @@ export default function EditPost({ body, image, title, slug }) {
   return (
     <>
       <button onClick={openModal}>
-        <SlNote className="w-[28px] h-[28px]" />
+        <SlNote className="lg:w-[28px] lg:h-[28px] w-[20px] h-[20px]" />
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>

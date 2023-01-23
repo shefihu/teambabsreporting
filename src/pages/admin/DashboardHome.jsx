@@ -84,12 +84,12 @@ const DashboardHome = () => {
         </div>
       </div>
       <div className="w-full h-full lg:hidden flex justify-between items-center">
-        <div className="w-[80%] h-full ">
+        <div className="w-[100%] h-full ">
           <Posts data={allPosts} loading={loading} />
         </div>
-        <div className="w-[15%] relative flex items-center justify-center h-full ">
+        {/* <div className="w-[15%] relative flex items-center justify-center h-full ">
           <AddPost />
-        </div>
+        </div> */}
       </div>
     </div>
   );
