@@ -8,7 +8,7 @@ const TopLayer = ({ singlePost }) => {
           <div className="w-full h-[20rem] bg-gray-200 rounded-xl overflow-hidden">
             <img
               crossOrigin="anonymous"
-              src={`https://teambabs.onrender.com/${singlePost?.image}`}
+              src={`https://teambabs-server-bolu1.koyeb.app/${singlePost?.image}`}
               alt=""
               className="w-full h-full object-cover"
             />

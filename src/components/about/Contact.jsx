@@ -15,10 +15,17 @@ const Contact = () => {
               </h1>
             </div>
             <div className="w-full h-16  items-center flex space-x-4">
-              <button className="h-10 px-3 rounded-lg font-bold bg-white">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://wa.me/2348032514191"
+                className="h-10 px-3 rounded-lg flex justify-center items-center font-bold bg-white"
+              >
                 Contact us
-              </button>
-              <h1 className="text-white font-semibold">Or call 08142347661</h1>
+              </a>
+              <h1 className="text-white font-semibold">
+                Or call +234 803 251 4191
+              </h1>
             </div>
           </div>
         </div>
@@ -28,11 +35,16 @@ const Contact = () => {
           <h1 className="text-center font-bold text-[32px] py-10">
             Have a question? Our team is happy to help you
           </h1>
-          <button className="w-[141px] h-[59px] bg-white font-bold rounded-[8px] text-black">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://wa.me/2348032514191"
+            className="w-[141px] h-[59px] bg-white flex justify-center items-center font-bold rounded-[8px] text-black"
+          >
             Contact us
-          </button>
+          </a>
           <p className="mt-10 font-bold">Or</p>
-          <p className="font-bold">Call +234 80652527</p>
+          <p className="font-bold">Call +234 803 251 4191</p>
         </div>
       </div>
     </div>

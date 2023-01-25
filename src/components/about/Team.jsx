@@ -1,9 +1,10 @@
 import React from "react";
 import roffy from "../../assets/images/roffy.JPG";
-import praise from "../../assets/images/praise.JPG";
-import admiral from "../../assets/images/admiral.JPG";
+import praise from "../../assets/images/praise.jpg";
+import admiral from "../../assets/images/admiral.jpg";
 import sammy from "../../assets/images/sammy.JPG";
 import babs from "../../assets/images/babs.JPG";
+import sbm from "../../assets/images/sbm.JPG";
 const Team = () => {
   return (
     <div className="w-full py-10 md:bg-[#808080]/10">
@@ -48,7 +49,7 @@ const Team = () => {
                 />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Olarewanju Praise</h1>
+                <h1 className="text-xl font-bold">Olanrewanju Praise David</h1>
                 <p>Editor & Publisher</p>
               </div>
             </div>
@@ -68,7 +69,13 @@ const Team = () => {
               </div>
             </div>
             <div className="min-h-[25rem] flex flex-col space-y-4 b">
-              <div className="w-full h-[20rem] bg-gray-200 rounded-xl"></div>
+              <div className="w-full h-[20rem] bg-gray-200 overflow-hidden rounded-xl">
+                <img
+                  src={sbm}
+                  alt=""
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
               <div>
                 <h1 className="text-xl font-bold">
                   Ajilogba Abdul-Hamid Adewale

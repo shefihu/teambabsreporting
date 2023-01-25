@@ -29,7 +29,7 @@ const MoreAbout = () => {
                 <img src={babs} alt="" className="w-full h-full object-cover" />
               </div>
               <div className="w-[10rem] space-y-3">
-                <h4 className="text-[15px] font-bold">Babatunde salaudeen</h4>
+                <h4 className="text-[15px] font-bold">Salaudeen Ashiri Babs</h4>
                 <h4 className="text-sm">Chief Editor</h4>
               </div>
             </div>
@@ -64,7 +64,7 @@ const MoreAbout = () => {
                 <img src={babs} alt="" className="w-full h-full object-cover" />
               </div>
               <div className="w-[10rem] space-y-3">
-                <h4 className="text-[15px] font-bold">Babatunde salaudeen</h4>
+                <h4 className="text-[15px] font-bold">Salaudeen Ashiri Babs</h4>
                 <h4 className="text-sm">Chief Editor</h4>
               </div>
             </div>

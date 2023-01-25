@@ -45,7 +45,7 @@ export default function AddPost() {
         onClick={openModal}
         className="lg:w-20 lg:h-20 h-14 w-14 fixed lg:top-[50%] right-8 top-10 rounded-full flex justify-center items-center bg-black"
       >
-        <img src={add} alt="" className="w-[50%] lg:w-full" />
+        <img src={add} alt="" className="w-[50%]" />
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>

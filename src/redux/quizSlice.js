@@ -3,8 +3,10 @@ import axios from "axios";
 import Cookies from "js-cookie";
 const initialState = {
   loading: false,
+  loadingQuiz: true,
   error: null,
   addquiz: {},
+  quizQuestions: [],
 };
 const postSlice = createSlice({
   name: "quiz",
@@ -24,16 +26,37 @@ const postSlice = createSlice({
       state.error = action.payload.error;
       state.addquiz = null;
     },
+    questionStart(state) {
+      state.loadingQuiz = true;
+      state.error = null;
+    },
+    questionSuccess(state, action) {
+      state.loadingQuiz = false;
+      state.error = null;
+      state.quizQuestions = action.payload.quizQuestions;
+    },
+    questionFailure(state, action) {
+      state.loadingQuiz = false;
+      state.error = action.payload.error;
+      state.quizQuestions = null;
+    },
   },
 });
-export const { quizStart, quizSuccess, quizFailure } = postSlice.actions;
+export const {
+  quizStart,
+  quizSuccess,
+  quizFailure,
+  questionStart,
+  questionSuccess,
+  questionFailure,
+} = postSlice.actions;
 export const postAction =
   (formData, token, toast, navigate) => async (dispatch, getState) => {
     try {
       dispatch(quizStart());
 
       const response = await axios.post(
-        "https://teambabs.onrender.com/api/post/new",
+        "https://teambabs-server-bolu1.koyeb.app/api/post/new",
         formData,
         {
           "Content-Type": "multipart/form-data",
@@ -54,5 +77,22 @@ export const postAction =
       dispatch(quizFailure({ error }));
     }
   };
+export const fetchQuestions = (token, course) => async (dispatch) => {
+  try {
+    dispatch(questionStart());
+    const questions = await axios.get(
+      `https://teambabs-server-bolu1.koyeb.app/api/quiz/questions/${course}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
+    dispatch(questionSuccess({ quizQuestions: questions?.data.data }));
+  } catch (error) {
+    console.log(error);
+    dispatch(questionFailure({ error }));
+  }
+};
 export default postSlice.reducer;

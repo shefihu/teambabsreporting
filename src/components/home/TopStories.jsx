@@ -10,7 +10,11 @@ const TopStories = ({ data }) => {
         <h1 className="text-4xl">Top Stories</h1>
         <div className="w-full h-full  grid gap-4 mt-10 lg:grid-cols-4">
           {data?.map((post, index) => [
-            <div className="min-h-[16rem]  ">
+            <a
+              href={`/post/${post.slug}`}
+              key={index}
+              className="min-h-[16rem]  "
+            >
               <div className="w-full h-[200px]">
                 <img
                   crossOrigin="anonymous"
@@ -24,7 +28,7 @@ const TopStories = ({ data }) => {
                 <p className="text-[#808080]/70 font-bold">December 10</p>
               </div>
               <h1 className="text-xl font-bold">{post.title}</h1>
-            </div>,
+            </a>,
           ])}
         </div>
         <div className="w-full flex mt-4 justify-end">

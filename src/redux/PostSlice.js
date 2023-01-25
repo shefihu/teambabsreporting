@@ -151,7 +151,7 @@ export const postAction =
       dispatch(postStart());
 
       const response = await axios.post(
-        "https://teambabs.onrender.com/api/post/new",
+        "https://teambabs-server-bolu1.koyeb.app/api/post/new",
         formData,
         {
           "Content-Type": "multipart/form-data",
@@ -178,7 +178,7 @@ export const editpostAction =
       dispatch(editPostStart());
 
       const response = await axios.patch(
-        `https://teambabs.onrender.com/api/post/update/${slug}`,
+        `https://teambabs-server-bolu1.koyeb.app/api/post/update/${slug}`,
         { title, body },
         {
           "Content-Type": "multipart/form-data",
@@ -206,7 +206,7 @@ export const deletePost =
       dispatch(deletePostStart());
 
       const response = await axios.delete(
-        `https://teambabs.onrender.com/api/post/post/${id}`,
+        `https://teambabs-server-bolu1.koyeb.app/api/post/post/${id}`,
 
         {
           headers: {
@@ -235,7 +235,7 @@ export const fetchAllPosts = (setLoading) => async (dispatch) => {
   try {
     dispatch(allPostsStart());
     const posts = await axios.get(
-      "https://teambabs.onrender.com/api/post/posts"
+      "https://teambabs-server-bolu1.koyeb.app/api/post/posts"
     );
 
     dispatch(allPostsSuccess({ allPosts: posts?.data.data }));
@@ -248,7 +248,7 @@ export const fetchLatestPosts = () => async (dispatch) => {
   try {
     dispatch(latestPostStart());
     const posts = await axios.get(
-      "https://teambabs.onrender.com/api/post/latest"
+      "https://teambabs-server-bolu1.koyeb.app/api/post/latest"
     );
     dispatch(latestPostSuccess({ latestpost: posts?.data.data }));
   } catch (error) {
@@ -259,7 +259,7 @@ export const fetchSinglePost = (id) => async (dispatch) => {
   try {
     dispatch(singlePostStart());
     const post = await axios.get(
-      `https://teambabs.onrender.com/api/post/post/${id}`
+      `https://teambabs-server-bolu1.koyeb.app/api/post/post/${id}`
     );
 
     dispatch(singlePostSuccess({ singlePost: post?.data.data }));
@@ -271,7 +271,7 @@ export const fetchPostByCategory = (category) => async (dispatch) => {
   try {
     dispatch(postByCatStart());
     const post = await axios.get(
-      `https://teambabs.onrender.com/api/post/category/${category}`
+      `https://teambabs-server-bolu1.koyeb.app/api/post/category/${category}`
     );
     dispatch(postByCatSuccess({ postByCat: post?.data.data }));
   } catch (error) {

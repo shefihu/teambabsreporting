@@ -76,7 +76,7 @@ export const addAdmin =
       dispatch(addteamStart());
 
       const response = await axios.post(
-        "https://teambabs.onrender.com/api/admin/signup",
+        "https://teambabs-server-bolu1.koyeb.app/api/admin/signup",
         { email, name, password },
         {
           headers: {
@@ -100,7 +100,7 @@ export const fetchTeams = (token) => async (dispatch) => {
   try {
     dispatch(teamStart());
     const teams = await axios.get(
-      "https://teambabs.onrender.com/api/admin/admins",
+      "https://teambabs-server-bolu1.koyeb.app/api/admin/admins",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -119,7 +119,7 @@ export const deleteAdmin =
       dispatch(deleteteamStart());
 
       const response = await axios.delete(
-        `https://teambabs.onrender.com/api/admin/delete/${id}`,
+        `https://teambabs-server-bolu1.koyeb.app/api/admin/delete/${id}`,
 
         {
           headers: {

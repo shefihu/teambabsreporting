@@ -35,7 +35,7 @@ const Post = ({ post, loading }) => {
           <div className="w-[15%] ">
             <img
               crossOrigin="anonymous"
-              src={`https://teambabs.onrender.com/${post.image}`}
+              src={`https://teambabs-server-bolu1.koyeb.app/${post.image}`}
               alt=""
               className="w-[150px] h-[150px] object-cover"
             />

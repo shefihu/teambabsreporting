@@ -93,18 +93,18 @@ const Posts = ({ data, loading }) => {
             <div className="relative w-full">
               <AddPost />
             </div>
-            <div className="lg:grid  grid-cols-3  px-3 h-full w-full gap-10">
-              {data.map((post, index) => {
+            <div className="lg:hidden grid  grid-cols-1  px-3 h-full w-full gap-10">
+              {data?.map((post, index) => {
                 return (
                   <>
-                    <a
-                      href={`/post/${post.slug}`}
+                    <div
+                      // href={`/post/${post.slug}`}
                       className="min-h-[28rem] flex flex-col mt-5 space-y-4 b"
                     >
                       <div className="w-full h-[23rem] bg-gray-200 overflow-hidden rounded-xl">
                         <img
                           crossOrigin="anonymous"
-                          src={`https://teambabs.onrender.com/${post.image}`}
+                          src={`https://teambabs-server-bolu1.koyeb.app/${post.image}`}
                           alt=""
                           className="w-full h-full object-cover "
                         />
@@ -133,7 +133,7 @@ const Posts = ({ data, loading }) => {
                           {post.body.length >= 120 && "..."}
                         </p>
                       </div>
-                    </a>
+                    </div>
                   </>
                 );
               })}

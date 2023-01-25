@@ -131,7 +131,11 @@ const Hero = ({ data, loadingLatest }) => {
         </div>
         <div className="lg:hidden flex flex-col space-y-4 h-full py-4   ">
           <div className="h-[15rem] bg-black/10 backdrop-blur-sm  overflow-hidden relative w-full rounded-2xl">
-            <div key={index} className="absolute w-full h-full">
+            <a
+              href={`/post/${post.slug}`}
+              key={index}
+              className="absolute w-full h-full"
+            >
               <motion.img
                 variants={variants}
                 initial={"notMove"}
@@ -141,7 +145,7 @@ const Hero = ({ data, loadingLatest }) => {
                 alt=""
                 className="w-full h-full object-cover"
               />
-            </div>
+            </a>
             <div key={index} className="absolute w-[90%]  h-20 bottom-5 left-4">
               <motion.h1
                 className="text-sm uppercase text-white font-extrabold"
