@@ -83,7 +83,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                     <span> Team</span>
                   </li>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
@@ -93,7 +93,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                     <CiViewList />
                     <span> Categories</span>
                   </li>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
@@ -164,7 +164,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                     <span> Team</span>
                   </li>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
@@ -174,7 +174,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                     <CiViewList />
                     <span> Categories</span>
                   </li>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink

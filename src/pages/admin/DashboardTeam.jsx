@@ -11,6 +11,12 @@ const DashboardTeam = () => {
   const { admins, loadingAdmins, loadingDelete } = useSelector(
     (state) => state.team
   );
+    useEffect(() => {
+      window.scroll({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
   const handleDelete = (id) => {
     dispatch(deleteAdmin(id, token));
   };

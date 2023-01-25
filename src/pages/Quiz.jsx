@@ -1,12 +1,19 @@
 import React from "react";
 import Navbar from "../layout/Navbar";
 import quiz from "../assets/images/quiz.png";
+import under from "../assets/images/under.jpg";
 import { Link } from "react-router-dom";
 const Quiz = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-[100%] h-full relative bg-gray-100">
+      <div className="w-full max-w-[89rem] justify-center flex-col items-center h-screen  flex">
+        <div className="lg:w-[50%] w-full mt-40">
+          <img src={under} alt="" />
+        </div>
+        <h1> Coming soon...</h1>
+      </div>
+      {/* <div className="w-[100%] h-full relative bg-gray-100">
         <div className="w-full absolute">
           <img src={quiz} alt="" />
         </div>
@@ -35,7 +42,7 @@ const Quiz = () => {
             Start Quiz
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -18,7 +18,6 @@ export default function EditPost({ body, image, title, slug }) {
   }
   const { token } = useSelector((state) => state.auth);
   const { loadingEdit } = useSelector((state) => state.post);
-  console.log(loadingEdit);
   const handleSubmit = () => {
     dispatch(editpostAction(slug, title, body, token, toast));
   };

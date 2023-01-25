@@ -7,6 +7,7 @@ const initialState = {
   loadingPosts: true,
   loadingLatest: true,
   loadinSingle: true,
+  loadingRelated: true,
   loadingPostCat: true,
   loadingDelete: false,
   error: null,
@@ -17,6 +18,7 @@ const initialState = {
   deletePost: {},
   postByCat: [],
   latestpost: [],
+  relatedpost: [],
 };
 const postSlice = createSlice({
   name: "post",
@@ -120,6 +122,20 @@ const postSlice = createSlice({
       state.error = action.payload.error;
       state.latestpost = null;
     },
+    relatedPostStart(state) {
+      state.loadingRelated = true;
+      state.error = null;
+    },
+    relatedPostSuccess: (state, action) => {
+      state.loadingRelated = false;
+      state.error = null;
+      state.relatedpost = action.payload.relatedpost;
+    },
+    relatedPostFailure(state, action) {
+      state.loadingRelated = false;
+      state.error = action.payload.error;
+      state.relatedpost = null;
+    },
   },
 });
 export const {
@@ -144,6 +160,9 @@ export const {
   latestPostStart,
   latestPostSuccess,
   latestPostFailure,
+  relatedPostStart,
+  relatedPostSuccess,
+  relatedPostFailure,
 } = postSlice.actions;
 export const postAction =
   (formData, token, toast, navigate) => async (dispatch, getState) => {
@@ -253,6 +272,17 @@ export const fetchLatestPosts = () => async (dispatch) => {
     dispatch(latestPostSuccess({ latestpost: posts?.data.data }));
   } catch (error) {
     dispatch(latestPostFailure({ error }));
+  }
+};
+export const fetchRelated = (id) => async (dispatch) => {
+  try {
+    dispatch(relatedPostStart());
+    const posts = await axios.get(
+      `https://teambabs-server-bolu1.koyeb.app/api/post/similar/education/${id}`
+    );
+    dispatch(relatedPostSuccess({ relatedpost: posts?.data.data }));
+  } catch (error) {
+    dispatch(relatedPostFailure({ error }));
   }
 };
 export const fetchSinglePost = (id) => async (dispatch) => {

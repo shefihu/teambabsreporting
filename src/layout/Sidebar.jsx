@@ -124,7 +124,7 @@ const Sidebar = ({ setIsSidebarOpen, isSidebarOpen }) => {
                     location.pathname === "/about" ? "activeLink" : ""
                   }`}
                 >
-                  <Link to={"/education"}>
+                  <Link to={`/category/${"education"}`}>
                     <a className="text-[#000] text-[1.3rem] tracking-[2.7px] uppercase">
                       <span className="text-black  mr-[11px]">03</span>{" "}
                       Education

@@ -10,7 +10,13 @@ const DashboardQuiz = () => {
   const { quizQuestions, loadingQuiz } = useSelector((state) => state.quiz);
   // const handleDelete = (id) => {
   //   dispatch(deleteAdmin(id, token));
-  // };
+  // };'
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
   useEffect(() => {
     dispatch(fetchQuestions(token, course));
   }, [dispatch, token, course]);

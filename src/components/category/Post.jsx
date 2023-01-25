@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../redux/PostSlice";
 import logo from "../../assets/images/logo.png";
+import { FadeLoader } from "react-spinners";
 const Post = ({ data, loadingPostCat }) => {
   // const dispatch = useDispatch();
   // const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ const Post = ({ data, loadingPostCat }) => {
       {loadingPostCat ? (
         <>
           <div className="w-full flex justify-center h-screen items-center">
-            <img src={logo} alt="" className="animate-pulse" />
+            <FadeLoader />
           </div>
         </>
       ) : (
@@ -25,7 +26,7 @@ const Post = ({ data, loadingPostCat }) => {
               <>
                 <a
                   href={`/post/${post.slug}`}
-                  className="min-h-[28rem] flex flex-col space-y-4 b"
+                  className="min-h-[28rem] flex flex-col mt-4 space-y-4 b"
                 >
                   <div className="w-full h-[23rem] bg-gray-200 overflow-hidden rounded-xl">
                     <img

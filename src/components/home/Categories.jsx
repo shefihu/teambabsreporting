@@ -3,7 +3,7 @@ import admission from "../../assets/images/admission.png";
 import news from "../../assets/images/news.png";
 import campusGist from "../../assets/images/campusGist.png";
 import education from "../../assets/images/education.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 const Categories = () => {
   const navigate = useNavigate();
   const handleCategory = (category) => {
@@ -40,7 +40,7 @@ const Categories = () => {
             </div>
             <h1>Campus gist</h1>
           </div>{" "}
-          <Link
+          <NavLink
             to={`/category/${"education"}`}
             // onClick={handleCategory("education")}
             className=" h-[19rem] lg:min-h-[20rem] flex flex-col space-y-2 items-center "
@@ -53,7 +53,7 @@ const Categories = () => {
               />
             </div>
             <h1>Education</h1>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </div>

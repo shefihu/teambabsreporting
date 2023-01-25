@@ -72,7 +72,7 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
-                  to="/education"
+                  to={`/category/${"education"}`}
                 >
                   Education
                 </NavLink>

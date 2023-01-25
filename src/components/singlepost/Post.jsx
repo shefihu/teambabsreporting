@@ -6,11 +6,22 @@ const Post = ({ relatedPosts }) => {
       <div className="grid mt-6 lg:grid-cols-3 w-full gap-10">
         {relatedPosts?.slice(0, 3)?.map((post, index) => {
           return (
-            <div
+            <a
+              href={`/post/${post.slug}`}
               key={index}
               className="min-h-[28rem] flex flex-col space-y-4 b"
             >
-              <div className="w-full h-[23rem] bg-gray-200 rounded-xl"></div>
+              <a
+                href={`/post/${post.slug}`}
+                className="w-full h-[23rem] bg-gray-200 rounded-xl"
+              >
+                <img
+                  crossOrigin="anonymous"
+                  src={`https://teambabs-server-bolu1.koyeb.app/${post.image}`}
+                  alt=""
+                  className="w-full h-full object-cover "
+                />
+              </a>
               <div className="space-y-2">
                 <div className="w-full space-x-10 flex">
                   <p className="text-[#808080]/70 font-bold">
@@ -24,7 +35,7 @@ const Post = ({ relatedPosts }) => {
                   {post.body.length >= 120 && "..."}
                 </p>
               </div>
-            </div>
+            </a>
           );
         })}
       </div>

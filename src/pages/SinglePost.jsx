@@ -7,19 +7,24 @@ import Recent from "../components/singlepost/Recent";
 import TopLayer from "../components/singlepost/TopLayer";
 import Footer from "../layout/Footer";
 import Navbar from "../layout/Navbar";
-import { fetchPostByCategory, fetchSinglePost } from "../redux/PostSlice";
+import {
+  fetchPostByCategory,
+  fetchRelated,
+  fetchSinglePost,
+} from "../redux/PostSlice";
 
 const SinglePost = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { loadinSingle, singlePost, postByCat } = useSelector(
+  const { loadinSingle, singlePost, postByCat, relatedpost } = useSelector(
     (state) => state.post
   );
   const category = singlePost?.category;
   useEffect(() => {
     dispatch(fetchSinglePost(id));
     dispatch(fetchPostByCategory(category));
+    dispatch(fetchRelated(id));
   }, [dispatch, id, category]);
   useEffect(() => {
     window.scroll({
@@ -40,7 +45,7 @@ const SinglePost = () => {
           {" "}
           <TopLayer singlePost={singlePost} />
           <BottomLayer singlePost={singlePost} />
-          <Recent relatedPosts={postByCat} />
+          <Recent postByCat={postByCat} relatedPosts={relatedpost} />
         </>
       )}
 
