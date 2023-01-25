@@ -49,7 +49,7 @@ const Team = () => {
                 />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Olanrewanju Praise David</h1>
+                <h1 className="text-xl font-bold">Olanrewaju Praise David</h1>
                 <p>Editor & Publisher</p>
               </div>
             </div>
