@@ -50,16 +50,35 @@ export const {
   questionSuccess,
   questionFailure,
 } = postSlice.actions;
-export const postAction =
-  (formData, token, toast, navigate) => async (dispatch, getState) => {
+export const Add =
+  (
+    subject,
+    question,
+    optionOne,
+    optionTwo,
+    optionThree,
+    optionFour,
+    answer,
+    token,
+    toast
+  ) =>
+  async (dispatch, getState) => {
     try {
       dispatch(quizStart());
 
       const response = await axios.post(
-        "https://teambabs-server-bolu1.koyeb.app/api/post/new",
-        formData,
+        "https://teambabs-server-bolu1.koyeb.app/api/quiz/new",
         {
-          "Content-Type": "multipart/form-data",
+          subject,
+          question,
+          optionOne,
+          optionTwo,
+          optionThree,
+          optionFour,
+          answer,
+        },
+
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -69,6 +88,7 @@ export const postAction =
       window.location = "/dashboard/home";
     } catch (error) {
       console.log(error);
+
       toast.error(
         error.response && error.response.data.message && error.message
           ? error.response.data.message

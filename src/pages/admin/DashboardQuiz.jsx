@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
+import AddQuestions from "../../components/admin/modals/AddQuestions";
 import { fetchQuestions } from "../../redux/quizSlice";
 
 const DashboardQuiz = () => {
@@ -39,10 +40,9 @@ const DashboardQuiz = () => {
               <option value="GNS212">GNS212</option>
               <option value="GNS311">GNS311</option>
               <option value="GNS313">GNS312</option>
+              <option value="putme">POST UTME</option>
             </select>
-            <button className="w-[141px] py-2 bg-[#191919] h-[40px] text-white font-bold">
-              Add question
-            </button>
+            <AddQuestions />
           </div>
           <section className="w-full mx-auto  font-mono">
             <div className="w-full mb-8 overflow-hidden rounded-lg">

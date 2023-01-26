@@ -131,6 +131,7 @@ const Hero = ({ data, loadingLatest }) => {
         </div>
         <div className="lg:hidden flex flex-col space-y-4 h-full py-4   ">
           <div className="h-[15rem]  overflow-hidden relative w-full rounded-2xl">
+            <div className="w-full h-full absolute bg-gray-300/5 backdrop-blur-sm  z-10 top-0"></div>
             <a
               href={`/post/${post.slug}`}
               key={index}
@@ -148,7 +149,7 @@ const Hero = ({ data, loadingLatest }) => {
             </a>
             <div
               key={index}
-              className="absolute w-[90%] bg-black/10 backdrop-blur-sm  h-20 bottom-5 left-4"
+              className="absolute w-[90%] z-20  h-20 bottom-5 left-4"
             >
               <motion.h1
                 className="text-sm uppercase text-white font-extrabold"
