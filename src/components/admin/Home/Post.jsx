@@ -10,10 +10,16 @@ const Post = ({ post, loading }) => {
         <div className="w-full  flex h-full items-center">
           <div className="w-[80%] flex flex-col justify-between h-full">
             <h1 className="text-[32px] font-bold truncate">{post.title}</h1>
-            <p className="text-[20px] h-20 ">
+            {/* <p className="text-[20px] h-20 ">
               {post.body.substring(0, 220)}
               {post.body.length >= 220 && "..."}
-            </p>
+            </p> */}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: post?.body?.substring(0, 180).replace(/\n/g, "<br/>"),
+              }}
+              className="text-[20px] h-20"
+            />
             <div className="w-full pr-3 flex mt-4 justify-between">
               <div className="w-[300px] h-[43px] space-x-3 items-center flex  ">
                 <div className="w-[138px]  h-full text-[20px] items-center justify-center rounded-[8px] bg-gray-100 flex ">

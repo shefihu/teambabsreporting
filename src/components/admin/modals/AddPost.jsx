@@ -128,21 +128,22 @@ export default function AddPost() {
                         placeholder="Title"
                       />
 
-                      {/* <ReactQuill
+                      <ReactQuill
                         theme="snow"
                         value={content}
                         // name="content"
+                        className=""
                         onChange={setContent}
-                      /> */}
+                      />
 
-                      <textarea
+                      {/* <textarea
                         id=""
                         name="content"
                         onChange={(e) => setContent(e.target.value)}
                         placeholder="What is happening ?"
                         className="w-full  py-1 outline-none px-2 rounded-md"
                         rows="15"
-                      ></textarea>
+                      ></textarea> */}
                     </div>
                     <div className="w-full flex mt-3 space-x-4">
                       <div>

@@ -44,10 +44,14 @@ const Post = ({ data, loadingPostCat }) => {
                       <p className="text-[#808080]/70 font-bold">December 10</p>
                     </div>
                     <h1 className="text-xl font-bold">{post.title}</h1>
-                    <p>
-                      {post.body.substring(0, 180)}
-                      {post.body.length >= 120 && "..."}
-                    </p>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: post?.body
+                          ?.substring(0, 180)
+                          .replace(/\n/g, "<br/>"),
+                      }}
+                      className="text-base"
+                    />
                   </div>
                 </a>
               </>

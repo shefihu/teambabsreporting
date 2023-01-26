@@ -21,7 +21,7 @@ const Post = () => {
         </>
       ) : (
         <div className="lg:grid mt-6 grid-cols-3 h-full w-full gap-10">
-          {allPosts.map((post, index) => {
+          {allPosts?.map((post, index) => {
             return (
               <>
                 <a
@@ -44,10 +44,18 @@ const Post = () => {
                       <p className="text-[#808080]/70 font-bold">December 10</p>
                     </div>
                     <h1 className="text-xl font-bold">{post.title}</h1>
-                    <p>
+                    {/* <p>
                       {post.body.substring(0, 180)}
                       {post.body.length >= 120 && "..."}
-                    </p>
+                    </p> */}
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: post?.body
+                          ?.substring(0, 180)
+                          .replace(/\n/g, "<br/>"),
+                      }}
+                      className="text-base"
+                    />
                   </div>
                 </a>
               </>

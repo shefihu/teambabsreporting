@@ -93,13 +93,13 @@ const Posts = ({ data, loading }) => {
             <div className="relative w-full">
               <AddPost />
             </div>
-            <div className="lg:hidden grid  grid-cols-1  px-3 h-full w-full gap-10">
+            <div className="lg:hidden grid  grid-cols-1  px-3 h-full w-full gap-4">
               {data?.map((post, index) => {
                 return (
                   <>
                     <div
                       // href={`/post/${post.slug}`}
-                      className="min-h-[28rem] flex flex-col mt-5 space-y-4 b"
+                      className="min-h-[28rem] flex flex-col mt-3 space-y-3 b"
                     >
                       <div className="w-full h-[23rem] bg-gray-200 overflow-hidden rounded-xl">
                         <img
@@ -128,10 +128,14 @@ const Posts = ({ data, loading }) => {
                           </div>
                         </div>
                         <h1 className="text-xl font-bold">{post.title}</h1>
-                        <p>
-                          {post.body.substring(0, 180)}
-                          {post.body.length >= 120 && "..."}
-                        </p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: post?.body
+                              ?.substring(0, 180)
+                              .replace(/\n/g, "<br/>"),
+                          }}
+                          className="text-base"
+                        />
                       </div>
                     </div>
                   </>
