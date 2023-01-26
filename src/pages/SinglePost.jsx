@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Helmet from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
@@ -7,6 +8,8 @@ import Recent from "../components/singlepost/Recent";
 import TopLayer from "../components/singlepost/TopLayer";
 import Footer from "../layout/Footer";
 import Navbar from "../layout/Navbar";
+// import f from "";
+
 import {
   fetchPostByCategory,
   fetchRelated,
@@ -32,9 +35,21 @@ const SinglePost = () => {
       behavior: "smooth",
     });
   });
-  console.log(postByCat);
+  // console.log(postByCat);
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{singlePost.title}</title>
+        <meta name="description" content={singlePost.body} />
+        <link rel="icon" href="" />
+        <link
+          rel="icon"
+          href="../../public/favicon/favicon-32x32.png"
+          type="image/x-icon"
+        />
+      </Helmet>
+
       <Navbar />
       {loadinSingle ? (
         <div className="w-full h-screen flex justify-center items-center">

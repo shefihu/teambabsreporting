@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Helmet from "react-helmet";
 import Contact from "../components/about/Contact";
 import Hero from "../components/about/Hero";
 import MoreAbout from "../components/about/MoreAbout";
@@ -15,6 +16,11 @@ const About = () => {
   });
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>About us</title>
+        {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+      </Helmet>
       <Navbar />
       <Hero />
       <MoreAbout />

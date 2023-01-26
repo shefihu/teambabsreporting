@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { postAction } from "../../../redux/PostSlice";
 import { ClipLoader } from "react-spinners";
 import { toast, ToastContainer } from "react-toastify";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 export default function AddPost() {
   let [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState("education");
@@ -26,19 +28,22 @@ export default function AddPost() {
   function openModal() {
     setIsOpen(true);
   }
+  console.log(content);
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
+  const { loading, addpost } = useSelector((state) => state.post);
   const hiddenFileInput = React.useRef(null);
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     dispatch(postAction(formData, token, toast, navigate));
+    await handleFiles(addpost.slug);
   };
+  const handleFiles = () => {};
   const uploadImage = (e) => {
     setImage(e.target.files[0]);
   };
-  const { loading, addpost } = useSelector((state) => state.post);
   return (
     <>
       <button
@@ -122,6 +127,14 @@ export default function AddPost() {
                         className="w-full py-2  font-extrabold outline-none border-b border-b-black"
                         placeholder="Title"
                       />
+
+                      {/* <ReactQuill
+                        theme="snow"
+                        value={content}
+                        // name="content"
+                        onChange={setContent}
+                      /> */}
+
                       <textarea
                         id=""
                         name="content"

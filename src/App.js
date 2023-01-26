@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+// import Home from "..";
 import About from "./pages/About";
 import News from "./pages/News";
 import Educaton from "./pages/Educaton";
@@ -17,6 +18,7 @@ import DashboardQuiz from "./pages/admin/DashboardQuiz";
 import DashboardSettings from "./pages/admin/DashboardSettings";
 import { useSelector } from "react-redux";
 import Category from "./pages/Category";
+import Helmet from "react-helmet";
 // import Dashboard from "./pages/admin/Dashboard";
 
 function App() {

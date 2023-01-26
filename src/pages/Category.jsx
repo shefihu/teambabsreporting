@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Helmet from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Header from "../components/category/Header";
@@ -7,12 +8,12 @@ import Navbar from "../layout/Navbar";
 import { fetchPostByCategory } from "../redux/PostSlice";
 
 const Category = () => {
-      useEffect(() => {
-        window.scroll({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
   const { category } = useParams();
   const dispatch = useDispatch();
 
@@ -27,6 +28,11 @@ const Category = () => {
   }, [dispatch, category]);
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{category}</title>
+        {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+      </Helmet>
       <Navbar />
       <Header data={postByCat} />
       <Posts data={postByCat} loadingPostCat={loadingPostCat} />
