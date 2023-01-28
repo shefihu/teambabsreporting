@@ -36,7 +36,7 @@ function App() {
         <Route path="post/:id" element={<SinglePost />} />
         <Route path="category/:category" element={<Category />} />
         <Route path="quiz" element={<Quiz />} />
-        <Route path="quizquestions" element={<QuizQuestion />} />
+        <Route path="questions/:course" element={<QuizQuestion />} />
         {/* admin */}
         <Route path="adminauth" element={<AdminSignin />} />
         <Route

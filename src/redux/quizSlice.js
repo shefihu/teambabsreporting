@@ -97,18 +97,13 @@ export const Add =
       dispatch(quizFailure({ error }));
     }
   };
-export const fetchQuestions = (token, course) => async (dispatch) => {
+export const fetchQuestions = (course) => async (dispatch) => {
   try {
     dispatch(questionStart());
     const questions = await axios.get(
-      `https://teambabs-server-bolu1.koyeb.app/api/quiz/questions/${course}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `https://teambabs-server-bolu1.koyeb.app/api/quiz/questions/${course}`
     );
-
+    console.log(questions);
     dispatch(questionSuccess({ quizQuestions: questions?.data.data }));
   } catch (error) {
     console.log(error);

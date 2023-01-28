@@ -19,8 +19,8 @@ const DashboardQuiz = () => {
     });
   });
   useEffect(() => {
-    dispatch(fetchQuestions(token, course));
-  }, [dispatch, token, course]);
+    dispatch(fetchQuestions(course));
+  }, [dispatch, course]);
 
   return (
     <div>

@@ -39,14 +39,10 @@ const SinglePost = () => {
   return (
     <div>
       <Helmet>
-        <meta charSet="utf-8" />
-        <title>{singlePost.title}</title>
-        <meta name="description" content={singlePost.body} />
-        <link rel="icon" href="" />
-        <link
-          rel="icon"
-          href="../../public/favicon/favicon-32x32.png"
-          type="image/x-icon"
+        <title>{singlePost?.title}</title>
+        <meta
+          name="description"
+          content={singlePost?.body?.substring(0, 180)}
         />
       </Helmet>
 
