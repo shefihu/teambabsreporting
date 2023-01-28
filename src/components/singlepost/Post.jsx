@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from "timeago.js";
 
 const Post = ({ relatedPosts }) => {
   return (
@@ -27,7 +28,9 @@ const Post = ({ relatedPosts }) => {
                   <p className="text-[#808080]/70 font-bold">
                     {post.posted_by}
                   </p>
-                  <p className="text-[#808080]/70 font-bold">December 10</p>
+                  <p className="text-[#808080]/70 font-bold">
+                    {format(post?.created_at)}
+                  </p>
                 </div>
                 <h1 className="text-xl font-bold">{post.title}</h1>
                 <p

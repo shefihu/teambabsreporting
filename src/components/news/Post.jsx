@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../redux/PostSlice";
 import logo from "../../assets/images/logo.png";
 import { FadeLoader } from "react-spinners";
+import { format } from "timeago.js";
 const Post = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -41,7 +42,9 @@ const Post = () => {
                       <p className="text-[#808080]/70 font-bold">
                         {post.posted_by}
                       </p>
-                      <p className="text-[#808080]/70 font-bold">December 10</p>
+                      <p className="text-[#808080]/70 font-bold">
+                        {format(post.created_at)}
+                      </p>
                     </div>
                     <h1 className="text-xl font-bold">{post.title}</h1>
                     {/* <p>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { format } from "timeago.js";
 const TopLayer = ({ singlePost }) => {
   return (
     <div>
@@ -14,7 +14,7 @@ const TopLayer = ({ singlePost }) => {
             />
           </div>
           <div className="mt-6 h-full">
-            <h6>13 December,2022</h6>
+            <h6>{format(singlePost?.created_at)}</h6>
             <h1 className="text-4xl font-semibold">{singlePost?.title}</h1>
           </div>
         </div>

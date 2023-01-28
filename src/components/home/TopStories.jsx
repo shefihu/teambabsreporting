@@ -2,7 +2,7 @@ import React from "react";
 import { RxCaretRight } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
 import { baseUrl } from "../../constants/Base";
-
+import { format } from "timeago.js";
 const TopStories = ({ data }) => {
   return (
     <div>
@@ -25,7 +25,9 @@ const TopStories = ({ data }) => {
               </div>
               <div className="w-full space-x-10 mt-2 flex">
                 <p className="text-[#808080]/70 font-bold">{post.posted_by}</p>
-                <p className="text-[#808080]/70 font-bold">December 10</p>
+                <p className="text-[#808080]/70 font-bold">
+                  {format(post?.created_at)}
+                </p>
               </div>
               <h1 className="text-xl font-bold">{post.title}</h1>
             </a>,

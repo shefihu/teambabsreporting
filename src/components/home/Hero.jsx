@@ -4,6 +4,7 @@ import { RxCaretRight } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { baseUrl } from "../../constants/Base";
 import { motion } from "framer-motion";
+import { format } from "timeago.js";
 
 const Hero = ({ data, loadingLatest }) => {
   const [index, setIndex] = useState(0);
@@ -55,7 +56,9 @@ const Hero = ({ data, loadingLatest }) => {
               </h1>
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[0]?.posted_by}</p>
-                <p className="text-white font-bold">4mins ago</p>
+                <p className="text-white font-bold">
+                  {format(data[0]?.created_at)}
+                </p>
               </div>
             </div>
           </div>
@@ -78,7 +81,9 @@ const Hero = ({ data, loadingLatest }) => {
               </h1>
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[1]?.posted_by}</p>
-                <p className="text-white font-bold">4mins ago</p>
+                <p className="text-white font-bold">
+                  {format(data[1]?.created_at)}
+                </p>
               </div>
             </div>
           </div>
@@ -101,7 +106,9 @@ const Hero = ({ data, loadingLatest }) => {
               </h1>
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[2]?.posted_by}</p>
-                <p className="text-white font-bold">4mins ago</p>
+                <p className="text-white font-bold">
+                  {format(data[2]?.created_at)}
+                </p>
               </div>
             </div>
           </div>
@@ -124,7 +131,9 @@ const Hero = ({ data, loadingLatest }) => {
               </h1>
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[3]?.posted_by}</p>
-                <p className="text-white font-bold">4mins ago</p>
+                <p className="text-white font-bold">
+                  {format(data[3]?.created_at)}
+                </p>
               </div>
             </div>
           </div>
@@ -162,7 +171,9 @@ const Hero = ({ data, loadingLatest }) => {
               </motion.h1>
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{post?.posted_by}</p>
-                <p className="text-white font-bold">4mins ago</p>
+                <p className="text-white font-bold">
+                  {format(post?.created_at)}
+                </p>
               </div>
             </div>
           </div>
