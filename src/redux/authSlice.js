@@ -58,7 +58,7 @@ export const loginAction =
       dispatch(loginStart());
 
       const response = await axios.post(
-        "https://teambabs-server-bolu1.koyeb.app/api/admin/signin",
+        "https://babsreporting-server.babsreporting.com/api/admin/signin",
         {
           email,
           password,

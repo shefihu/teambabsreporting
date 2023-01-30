@@ -4,6 +4,12 @@ import { NavLink } from "react-router-dom";
 import { baseUrl } from "../../constants/Base";
 import { format } from "timeago.js";
 const TopStories = ({ data }) => {
+  const datejs = (timeStamp) => {
+    var date = new Date(timeStamp + "Z");
+
+    // console.log(Date.parse(date));
+    return format(Date.parse(date));
+  };
   return (
     <div>
       <div className="w-full xl:max-w-[85rem] h-full  py-4 px-4 mt-4 mx-auto">
@@ -26,7 +32,7 @@ const TopStories = ({ data }) => {
               <div className="w-full space-x-10 mt-2 flex">
                 <p className="text-[#808080]/70 font-bold">{post.posted_by}</p>
                 <p className="text-[#808080]/70 font-bold">
-                  {format(post?.created_at)}
+                  {datejs(post?.created_at)}
                 </p>
               </div>
               <h1 className="text-xl font-bold">{post.title}</h1>

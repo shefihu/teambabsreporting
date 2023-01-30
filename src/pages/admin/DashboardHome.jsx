@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Posts from "../../components/admin/Home/Posts";
 import AddPost from "../../components/admin/modals/AddPost";
-import { fetchAllPosts } from "../../redux/PostSlice";
+import { fetchAllPosts, fetchLatestPosts } from "../../redux/PostSlice";
 
 const DashboardHome = () => {
   const dispatch = useDispatch();
@@ -14,9 +14,9 @@ const DashboardHome = () => {
     });
   });
   useEffect(() => {
-    dispatch(fetchAllPosts(setLoading));
+    dispatch(fetchLatestPosts(setLoading));
   }, [dispatch]);
-  const { loadingPosts, allPosts } = useSelector((state) => state.post);
+  const { loadingLatest, latestpost } = useSelector((state) => state.post);
   const data = [
     {
       id: 1,
@@ -77,7 +77,7 @@ const DashboardHome = () => {
     <div className="w-full  h-full mt-20">
       <div className="w-full h-full lg:flex hidden justify-between items-center">
         <div className="w-[80%] h-full ">
-          <Posts data={allPosts} loading={loading} />
+          <Posts data={latestpost} loading={loadingLatest} />
         </div>
         <div className="w-[15%] relative flex items-center justify-center h-full ">
           <AddPost />
@@ -85,7 +85,7 @@ const DashboardHome = () => {
       </div>
       <div className="w-full h-full lg:hidden flex justify-between items-center">
         <div className="w-[100%] h-full ">
-          <Posts data={allPosts} loading={loading} />
+          <Posts data={latestpost} loading={loadingLatest} />
         </div>
         {/* <div className="w-[15%] relative flex items-center justify-center h-full ">
           <AddPost />

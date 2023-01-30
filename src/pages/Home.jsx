@@ -16,7 +16,6 @@ const Home = () => {
   }, [dispatch]);
 
   const { loadingLatest, latestpost } = useSelector((state) => state.post);
-  console.log(latestpost);
   useEffect(() => {
     window.scroll({
       top: 0,

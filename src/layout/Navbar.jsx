@@ -87,7 +87,6 @@ const Navbar = () => {
                   Quiz
                 </NavLink>
               </li>
-              <li>Search</li>
             </ul>
           </div>
           <button

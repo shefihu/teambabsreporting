@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Helmet from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { FadeLoader } from "react-spinners";
 import Header from "../components/category/Header";
 import Posts from "../components/category/Posts";
 import Navbar from "../layout/Navbar";
@@ -34,8 +35,18 @@ const Category = () => {
         {/* <link rel="canonical" href="http://mysite.com/example" /> */}
       </Helmet>
       <Navbar />
-      <Header data={postByCat} />
-      <Posts data={postByCat} loadingPostCat={loadingPostCat} />
+      {loadingPostCat ? (
+        <>
+          <div className="w-full flex justify-center h-screen items-center">
+            <FadeLoader />
+          </div>
+        </>
+      ) : (
+        <>
+          <Header data={postByCat} loadingPostCat={loadingPostCat} />
+          <Posts data={postByCat} loadingPostCat={loadingPostCat} />
+        </>
+      )}
     </div>
   );
 };

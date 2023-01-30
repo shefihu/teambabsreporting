@@ -54,7 +54,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
   return (
     <>
       <div className="w-full h-full lg:flex hidden ">
-        <div className="w-[20%] h-full left-0 top-0 fixed ">
+        <div className="w-[20%] bg-white z-50 h-full drop-shadow-lg left-0 top-0 fixed ">
           <div className="flex flex-col items-center">
             <div className="mt-10">
               <img src={logo} alt="" />
@@ -105,7 +105,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                     <span> Quiz</span>
                   </li>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
@@ -115,7 +115,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                     <IoSettingsOutline />
                     <span>Settings</span>
                   </li>
-                </NavLink>
+                </NavLink> */}
               </ul>
             </div>
           </div>
@@ -183,10 +183,10 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                 >
                   <li className="flex space-x-3 px-3 py-2  items-center">
                     <CiViewList />
-                    <span> Quiz</span>
+                    <span>Quiz</span>
                   </li>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
@@ -196,7 +196,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
                     <IoSettingsOutline />
                     <span>Settings</span>
                   </li>
-                </NavLink>
+                </NavLink> */}
               </ul>
             </div>
           </div>

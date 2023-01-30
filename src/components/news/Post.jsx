@@ -4,14 +4,21 @@ import { fetchAllPosts } from "../../redux/PostSlice";
 import logo from "../../assets/images/logo.png";
 import { FadeLoader } from "react-spinners";
 import { format } from "timeago.js";
+import { baseUrl } from "../../constants/Base";
+
 const Post = () => {
   const dispatch = useDispatch();
+  const datejs = (timeStamp) => {
+    var date = new Date(timeStamp + "Z");
+
+    // console.log(Date.parse(date));
+    return format(Date.parse(date));
+  };
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     dispatch(fetchAllPosts(setLoading));
   }, [dispatch]);
   const { loadingPosts, allPosts } = useSelector((state) => state.post);
-  console.log(allPosts);
   return (
     <div>
       {loadingPosts ? (
@@ -32,7 +39,7 @@ const Post = () => {
                   <div className="w-full h-[23rem] bg-gray-200 overflow-hidden rounded-xl">
                     <img
                       crossOrigin="anonymous"
-                      src={`https://teambabs-server-bolu1.koyeb.app/${post.image}`}
+                      src={`${baseUrl}${post.image}`}
                       alt=""
                       className="w-full h-full object-cover "
                     />
@@ -43,7 +50,7 @@ const Post = () => {
                         {post.posted_by}
                       </p>
                       <p className="text-[#808080]/70 font-bold">
-                        {format(post.created_at)}
+                        {datejs(post?.created_at)}
                       </p>
                     </div>
                     <h1 className="text-xl font-bold">{post.title}</h1>

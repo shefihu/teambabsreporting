@@ -8,13 +8,13 @@ const Quiz = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-full max-w-[89rem] justify-center flex-col items-center h-screen  flex">
+      {/* <div className="w-full max-w-[89rem] justify-center flex-col items-center h-screen  flex">
         <div className="lg:w-[50%] w-full mt-40">
           <img src={under} alt="" />
         </div>
         <h1> Coming soon...</h1>
-      </div>
-      {/* <div className="w-[100%] h-full relative bg-gray-100">
+      </div> */}
+      <div className="w-[100%] h-full relative bg-gray-100">
         <div className="w-full lg:absolute lg:flex hidden">
           <img src={quiz} alt="" />
         </div>
@@ -53,7 +53,9 @@ const Quiz = () => {
             Choose the course you want to partake in
           </h4>
           <select
-            name=""
+            onChange={(e) => setCourse(e.target.value)}
+            name="course"
+            value={course}
             id=""
             className="w-[15rem] py-3 px-3 bg-transparent border border-black rounded-xl"
           >
@@ -66,13 +68,13 @@ const Quiz = () => {
             <option value="putme">POST UTME</option>
           </select>
           <Link
-            to={"/quizquestions"}
+            to={`/questions/${course}`}
             className="w-[10rem] flex justify-center text-white bg-black py-3 rounded-lg font-bold"
           >
             Start Quiz
           </Link>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

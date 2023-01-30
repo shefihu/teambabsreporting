@@ -1,7 +1,8 @@
 import React from "react";
-
+import { baseUrl } from "../../constants/Base";
 const BottomLayer = (props) => {
-  const { singlePost } = props;
+  const { singlePost, attachments } = props;
+  console.log(attachments);
   return (
     <div>
       <div className="w-full xl:max-w-[85rem] flex  h-full md:mt-0 mt-3  px-4 py-5  mx-auto">
@@ -17,6 +18,20 @@ const BottomLayer = (props) => {
           }}
           className="text-xl"
         />
+        <div className="grid lg:grid-cols-3 mt-10 gap-10">
+          {attachments?.map(() => {
+            return (
+              <div className=" min-h-[60px]">
+                <img
+                  crossOrigin="anonymous"
+                  src={`${baseUrl}${singlePost?.image}`}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

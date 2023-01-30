@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 const initialState = {
   loading: false,
+  loadingAttachment: true,
   loadingEdit: false,
   loadingPosts: true,
   loadingLatest: true,
@@ -19,6 +20,7 @@ const initialState = {
   postByCat: [],
   latestpost: [],
   relatedpost: [],
+  attachments: [],
 };
 const postSlice = createSlice({
   name: "post",
@@ -79,6 +81,20 @@ const postSlice = createSlice({
       state.loadingPosts = false;
       state.error = action.payload.error;
       state.allPosts = null;
+    },
+    attachmentsStart(state) {
+      state.loadingAttachment = true;
+      state.error = null;
+    },
+    attachmentsSuccess: (state, action) => {
+      state.loadingAttachment = false;
+      state.error = null;
+      state.attachments = action.payload.attachments;
+    },
+    attachmentsFailure(state, action) {
+      state.loadingAttachment = false;
+      state.error = action.payload.error;
+      state.attachments = null;
     },
     singlePostStart(state) {
       state.loadinSingle = true;
@@ -148,6 +164,9 @@ export const {
   allPostsStart,
   allPostsSuccess,
   allPostsFailure,
+  attachmentsStart,
+  attachmentsSuccess,
+  attachmentsFailure,
   singlePostStart,
   singlePostSuccess,
   singlePostFailure,
@@ -170,7 +189,7 @@ export const postAction =
       dispatch(postStart());
 
       const response = await axios.post(
-        "https://teambabs-server-bolu1.koyeb.app/api/post/new",
+        "https://babsreporting-server.babsreporting.com/api/post/new",
         formData,
         {
           "Content-Type": "multipart/form-data",
@@ -180,7 +199,7 @@ export const postAction =
         }
       );
       dispatch(postSuccess({ addpost: response.data }));
-      window.location = "/dashboard/home";
+      return response.data.data;
     } catch (error) {
       console.log(error);
       toast.error(
@@ -197,7 +216,7 @@ export const editpostAction =
       dispatch(editPostStart());
 
       const response = await axios.patch(
-        `https://teambabs-server-bolu1.koyeb.app/api/post/update/${slug}`,
+        `https://babsreporting-server.babsreporting.com/api/post/update/${slug}`,
         { title, body },
         {
           "Content-Type": "multipart/form-data",
@@ -225,7 +244,7 @@ export const deletePost =
       dispatch(deletePostStart());
 
       const response = await axios.delete(
-        `https://teambabs-server-bolu1.koyeb.app/api/post/post/${id}`,
+        `https://babsreporting-server.babsreporting.com/api/post/post/${id}`,
 
         {
           headers: {
@@ -254,7 +273,7 @@ export const fetchAllPosts = (setLoading) => async (dispatch) => {
   try {
     dispatch(allPostsStart());
     const posts = await axios.get(
-      "https://teambabs-server-bolu1.koyeb.app/api/post/posts"
+      "https://babsreporting-server.babsreporting.com/api/post/posts"
     );
 
     dispatch(allPostsSuccess({ allPosts: posts?.data.data }));
@@ -267,7 +286,7 @@ export const fetchLatestPosts = () => async (dispatch) => {
   try {
     dispatch(latestPostStart());
     const posts = await axios.get(
-      "https://teambabs-server-bolu1.koyeb.app/api/post/latest"
+      "https://babsreporting-server.babsreporting.com/api/post/latest"
     );
     dispatch(latestPostSuccess({ latestpost: posts?.data.data }));
   } catch (error) {
@@ -278,7 +297,7 @@ export const fetchRelated = (id) => async (dispatch) => {
   try {
     dispatch(relatedPostStart());
     const posts = await axios.get(
-      `https://teambabs-server-bolu1.koyeb.app/api/post/similar/education/${id}`
+      `https://babsreporting-server.babsreporting.com/api/post/similar/education/${id}`
     );
     dispatch(relatedPostSuccess({ relatedpost: posts?.data.data }));
   } catch (error) {
@@ -289,7 +308,7 @@ export const fetchSinglePost = (id) => async (dispatch) => {
   try {
     dispatch(singlePostStart());
     const post = await axios.get(
-      `https://teambabs-server-bolu1.koyeb.app/api/post/post/${id}`
+      `https://babsreporting-server.babsreporting.com/api/post/post/${id}`
     );
 
     dispatch(singlePostSuccess({ singlePost: post?.data.data }));
@@ -297,11 +316,23 @@ export const fetchSinglePost = (id) => async (dispatch) => {
     dispatch(singlePostFailure({ error }));
   }
 };
+export const fetchAttachment = (id) => async (dispatch) => {
+  try {
+    dispatch(attachmentsStart());
+    const post = await axios.get(
+      `https://babsreporting-server.babsreporting.com/api/post/getAttachments/${id}`
+    );
+
+    dispatch(attachmentsSuccess({ attachments: post?.data.data }));
+  } catch (error) {
+    dispatch(attachmentsFailure({ error }));
+  }
+};
 export const fetchPostByCategory = (category) => async (dispatch) => {
   try {
     dispatch(postByCatStart());
     const post = await axios.get(
-      `https://teambabs-server-bolu1.koyeb.app/api/post/category/${category}`
+      `https://babsreporting-server.babsreporting.com/api/post/category/${category}`
     );
     dispatch(postByCatSuccess({ postByCat: post?.data.data }));
   } catch (error) {

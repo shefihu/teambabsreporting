@@ -19,6 +19,7 @@ import DashboardSettings from "./pages/admin/DashboardSettings";
 import { useSelector } from "react-redux";
 import Category from "./pages/Category";
 import Helmet from "react-helmet";
+import QuizResults from "./pages/QuizResults";
 // import Dashboard from "./pages/admin/Dashboard";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="category/:category" element={<Category />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="questions/:course" element={<QuizQuestion />} />
+        <Route path="results" element={<QuizResults />} />
         {/* admin */}
         <Route path="adminauth" element={<AdminSignin />} />
         <Route

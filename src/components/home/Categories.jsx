@@ -15,7 +15,7 @@ const Categories = () => {
         <h1 className="text-4xl">Categories</h1>
         <div className="md:grid lg:grid-cols-4 gap-4 h-full  w-full mt-10">
           <NavLink
-            to={`/category/${"campus"}`}
+            to={`/category/${"admission"}`}
             className=" h-[19rem] lg:min-h-[20rem] flex flex-col space-y-2 items-center "
           >
             <div className="w-full rounded-2xl h-full overflow-hidden  bg-gray-200">

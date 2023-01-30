@@ -12,6 +12,7 @@ export default function Addadmin({ user }) {
   let [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("0");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null);
   const formData = new FormData();
@@ -30,7 +31,7 @@ export default function Addadmin({ user }) {
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const handleSubmit = () => {
-    dispatch(addAdmin(email, name, password, token, toast, navigate));
+    dispatch(addAdmin(email, name, password, role, token, toast, navigate));
   };
   const uploadImage = (e) => {
     setImage(e.target.files[0]);
@@ -127,6 +128,7 @@ export default function Addadmin({ user }) {
                         className="w-full py-2   outline-none border-b border-b-black"
                         placeholder="Email"
                       />
+
                       <input
                         type="text"
                         name="password"
@@ -134,6 +136,16 @@ export default function Addadmin({ user }) {
                         className="w-full py-2   outline-none border-b border-b-black"
                         placeholder="Password"
                       />
+                      <select
+                        name="role"
+                        id=""
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                        className="w-full py-2 px-1 border border-black bg-transparent"
+                      >
+                        <option value="1">Super Admin</option>
+                        <option value="0">Admin</option>
+                      </select>
                     </div>
                     <div className="w-full flex mt-4 justify-center">
                       {!loading ? (

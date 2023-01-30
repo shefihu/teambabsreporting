@@ -70,14 +70,14 @@ export const {
   deleteteamFailure,
 } = teamSlice.actions;
 export const addAdmin =
-  (email, name, password, token, toast, navigate) =>
+  (email, name, password, role, token, toast, navigate) =>
   async (dispatch, getState) => {
     try {
       dispatch(addteamStart());
 
       const response = await axios.post(
-        "https://teambabs-server-bolu1.koyeb.app/api/admin/signup",
-        { email, name, password },
+        "https://babsreporting-server.babsreporting.com/api/admin/signup",
+        { email, name, password, role },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -100,7 +100,7 @@ export const fetchTeams = (token) => async (dispatch) => {
   try {
     dispatch(teamStart());
     const teams = await axios.get(
-      "https://teambabs-server-bolu1.koyeb.app/api/admin/admins",
+      "https://babsreporting-server.babsreporting.com/api/admin/admins",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -119,7 +119,7 @@ export const deleteAdmin =
       dispatch(deleteteamStart());
 
       const response = await axios.delete(
-        `https://teambabs-server-bolu1.koyeb.app/api/admin/delete/${id}`,
+        `https://babsreporting-server.babsreporting.com/api/admin/delete/${id}`,
 
         {
           headers: {

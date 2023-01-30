@@ -5,16 +5,20 @@ import { useNavigate } from "react-router-dom";
 import { BiImages } from "react-icons/bi";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { postAction } from "../../../redux/PostSlice";
 import { ClipLoader } from "react-spinners";
 import { toast, ToastContainer } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
 export default function AddPost() {
   let [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState("education");
   const [title, setTitle] = useState("");
+  const [loader, setLoader] = useState(false);
   const [content, setContent] = useState("");
+  const [fileNames, setFileNames] = useState([]);
   const [image, setImage] = useState(null);
   const formData = new FormData();
   formData.append("image", image); // imageFile is a File object
@@ -28,27 +32,65 @@ export default function AddPost() {
   function openModal() {
     setIsOpen(true);
   }
-  console.log(content);
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
+  const handleClick2 = (event) => {
+    hiddenFileInput2.current.click();
+  };
   const { loading, addpost } = useSelector((state) => state.post);
+
   const hiddenFileInput = React.useRef(null);
+  const hiddenFileInput2 = React.useRef(null);
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
   const handleSubmit = async () => {
-    dispatch(postAction(formData, token, toast, navigate));
-    await handleFiles(addpost.slug);
+    const res = await dispatch(postAction(formData, token, toast, navigate));
+    await handleFiles(res);
   };
-  const handleFiles = () => {};
+  const handleFiles = async (id) => {
+    for (let i = 0; i < fileNames.length; i++) {
+      const formData = new FormData();
+      formData.append("file", fileNames[i]);
+      formData.append("postId", id);
+      setLoader(true);
+      try {
+        // setLoading(true);
+        const response = await axios.post(
+          `https://babsreporting-server.babsreporting.com/api/post/uploadAttachments`,
+          formData,
+          {
+            "Content-Type": "multipart/form-data",
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        window.location = "/dashboard/home";
+      } catch (error) {
+        // toast.error(error.response.data.message);
+      }
+      setLoader(false);
+    }
+  };
   const uploadImage = (e) => {
     setImage(e.target.files[0]);
   };
+
+  const onChangeFile = (e) => {
+    console.log("onChangeFile");
+    for (let i = 0; i < e.target.files.length; i++) {
+      console.log(e.target.files[i]);
+      setFileNames((prev) => [...prev, e.target.files[i]]);
+    }
+  };
+  console.log(fileNames);
   return (
     <>
       <button
         onClick={openModal}
-        className="lg:w-20 lg:h-20 h-14 w-14 fixed lg:top-[50%] right-8 top-10 rounded-full flex justify-center items-center bg-black"
+        className="lg:w-20 lg:h-20 h-14 w-14 fixed lg:top-[50%] right-8 bottom-6 rounded-full flex justify-center items-center bg-black"
       >
         <img src={add} alt="" className="w-[50%]" />
       </button>
@@ -94,7 +136,7 @@ export default function AddPost() {
                         <option value="admission">Admission Updates</option>
                       </select>
 
-                      {!loading ? (
+                      {!loader && !loading ? (
                         <button
                           type="button"
                           onClick={handleSubmit}
@@ -163,6 +205,7 @@ export default function AddPost() {
                           className="hidden"
                           type="file"
                           required
+                          name="one"
                           onChange={(e) => {
                             uploadImage(e);
                           }}
@@ -172,7 +215,7 @@ export default function AddPost() {
                       <div>
                         <button
                           className="bg-black px-3 py-1 font-bold text-base "
-                          // onClick={handleClick}
+                          onClick={handleClick2}
                           type="button"
                         >
                           <div className="flex justify-center items-center w-full my-1">
@@ -184,9 +227,10 @@ export default function AddPost() {
                         </button>
                         <input
                           className="hidden"
+                          name="two"
                           type="file"
-                          // onChange={(e) => uploadImage(e)}
-                          // ref={hiddenFileInput}
+                          onChange={(e) => onChangeFile(e)}
+                          ref={hiddenFileInput2}
                         />
                       </div>
                     </div>

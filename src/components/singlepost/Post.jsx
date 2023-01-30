@@ -1,7 +1,14 @@
 import React from "react";
 import { format } from "timeago.js";
+import { baseUrl } from "../../constants/Base";
 
 const Post = ({ relatedPosts }) => {
+  const datejs = (timeStamp) => {
+    var date = new Date(timeStamp + "Z");
+
+    // console.log(Date.parse(date));
+    return format(Date.parse(date));
+  };
   return (
     <div>
       <div className="grid mt-6 lg:grid-cols-3 w-full gap-10">
@@ -18,7 +25,7 @@ const Post = ({ relatedPosts }) => {
               >
                 <img
                   crossOrigin="anonymous"
-                  src={`https://teambabs-server-bolu1.koyeb.app/${post.image}`}
+                  src={`${baseUrl}${post.image}`}
                   alt=""
                   className="w-full h-full object-cover "
                 />
@@ -29,7 +36,7 @@ const Post = ({ relatedPosts }) => {
                     {post.posted_by}
                   </p>
                   <p className="text-[#808080]/70 font-bold">
-                    {format(post?.created_at)}
+                    {datejs(post?.created_at)}
                   </p>
                 </div>
                 <h1 className="text-xl font-bold">{post.title}</h1>

@@ -2,6 +2,8 @@ import React from "react";
 import { BiTrash } from "react-icons/bi";
 import { SlNote } from "react-icons/sl";
 import DeletePost from "../modals/DeletPost";
+import { baseUrl } from "../../../constants/Base";
+
 import EditPost from "../modals/EditPost";
 const Post = ({ post, loading }) => {
   return (
@@ -41,7 +43,7 @@ const Post = ({ post, loading }) => {
           <div className="w-[15%] ">
             <img
               crossOrigin="anonymous"
-              src={`https://teambabs-server-bolu1.koyeb.app/${post.image}`}
+              src={`${baseUrl}${post.image}`}
               alt=""
               className="w-[150px] h-[150px] object-cover"
             />

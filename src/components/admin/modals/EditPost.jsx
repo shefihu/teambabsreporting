@@ -62,7 +62,7 @@ export default function EditPost({ body, image, title, slug }) {
                   <div className="mt-6 w-full h-60">
                     <img
                       crossOrigin="anonymous"
-                      src={`https://teambabs-server-bolu1.koyeb.app/${image}`}
+                      src={` https://teambabs-server-bolu1.koyeb.app/api${image}`}
                       alt=""
                       className="w-full h-full object-cover"
                     />

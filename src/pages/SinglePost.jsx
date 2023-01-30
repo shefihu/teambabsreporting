@@ -11,6 +11,7 @@ import Navbar from "../layout/Navbar";
 // import f from "";
 
 import {
+  fetchAttachment,
   fetchPostByCategory,
   fetchRelated,
   fetchSinglePost,
@@ -20,14 +21,14 @@ const SinglePost = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { loadinSingle, singlePost, postByCat, relatedpost } = useSelector(
-    (state) => state.post
-  );
+  const { loadinSingle, singlePost, postByCat, relatedpost, attachments } =
+    useSelector((state) => state.post);
   const category = singlePost?.category;
   useEffect(() => {
     dispatch(fetchSinglePost(id));
     dispatch(fetchPostByCategory(category));
     dispatch(fetchRelated(id));
+    dispatch(fetchAttachment(id));
   }, [dispatch, id, category]);
   useEffect(() => {
     window.scroll({
@@ -55,7 +56,7 @@ const SinglePost = () => {
         <>
           {" "}
           <TopLayer singlePost={singlePost} />
-          <BottomLayer singlePost={singlePost} />
+          <BottomLayer singlePost={singlePost} attachments={attachments} />
           <Recent postByCat={postByCat} relatedPosts={relatedpost} />
         </>
       )}

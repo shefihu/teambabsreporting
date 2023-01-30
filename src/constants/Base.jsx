@@ -1,1 +1,1 @@
-export const baseUrl = "https://teambabs-server-bolu1.koyeb.app/";
+export const baseUrl = "https://babsreporting-server.babsreporting.com/";

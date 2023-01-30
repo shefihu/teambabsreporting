@@ -25,6 +25,11 @@ const Hero = ({ data, loadingLatest }) => {
     }, 4000);
     return () => clearInterval(interval);
   }, [index]);
+  const datejs = (timeStamp) => {
+    var date = new Date(timeStamp + "Z");
+
+    return format(Date.parse(date));
+  };
   const variants = {
     notMove: { opacity: 0 },
     moves: {
@@ -57,7 +62,7 @@ const Hero = ({ data, loadingLatest }) => {
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[0]?.posted_by}</p>
                 <p className="text-white font-bold">
-                  {format(data[0]?.created_at)}
+                  {datejs(data[0]?.created_at)}
                 </p>
               </div>
             </div>
@@ -82,7 +87,7 @@ const Hero = ({ data, loadingLatest }) => {
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[1]?.posted_by}</p>
                 <p className="text-white font-bold">
-                  {format(data[1]?.created_at)}
+                  {datejs(data[1]?.created_at)}
                 </p>
               </div>
             </div>
@@ -107,7 +112,7 @@ const Hero = ({ data, loadingLatest }) => {
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[2]?.posted_by}</p>
                 <p className="text-white font-bold">
-                  {format(data[2]?.created_at)}
+                  {datejs(data[2]?.created_at)}
                 </p>
               </div>
             </div>
@@ -132,7 +137,7 @@ const Hero = ({ data, loadingLatest }) => {
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{data[3]?.posted_by}</p>
                 <p className="text-white font-bold">
-                  {format(data[3]?.created_at)}
+                  {datejs(data[3]?.created_at)}
                 </p>
               </div>
             </div>
@@ -142,7 +147,7 @@ const Hero = ({ data, loadingLatest }) => {
           <div className="h-[15rem]  overflow-hidden relative w-full rounded-2xl">
             <div className="w-full h-full absolute bg-gray-300/5 backdrop-blur-sm  z-10 top-0"></div>
             <a
-              href={`/post/${post.slug}`}
+              href={`/post/${post?.slug}`}
               key={index}
               className="absolute w-full h-full"
             >
@@ -172,7 +177,7 @@ const Hero = ({ data, loadingLatest }) => {
               <div className="flex mt-2 space-x-4">
                 <p className="text-white font-bold">{post?.posted_by}</p>
                 <p className="text-white font-bold">
-                  {format(post?.created_at)}
+                  {datejs(post?.created_at)}
                 </p>
               </div>
             </div>

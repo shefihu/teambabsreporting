@@ -67,7 +67,7 @@ export const Add =
       dispatch(quizStart());
 
       const response = await axios.post(
-        "https://teambabs-server-bolu1.koyeb.app/api/quiz/new",
+        "https://babsreporting-server.babsreporting.com/api/quiz/new",
         {
           subject,
           question,
@@ -101,7 +101,7 @@ export const fetchQuestions = (course) => async (dispatch) => {
   try {
     dispatch(questionStart());
     const questions = await axios.get(
-      `https://teambabs-server-bolu1.koyeb.app/api/quiz/questions/${course}`
+      `https://babsreporting-server.babsreporting.com/api/quiz/questions/${course}`
     );
     console.log(questions);
     dispatch(questionSuccess({ quizQuestions: questions?.data.data }));
