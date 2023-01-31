@@ -199,6 +199,12 @@ export const postAction =
         }
       );
       dispatch(postSuccess({ addpost: response.data }));
+      toast.success(
+        "Your post has been uploaded successfully, reload the page to see changes"
+      );
+      // setTimeout(() => {
+
+      // }, timeout);
       return response.data.data;
     } catch (error) {
       console.log(error);

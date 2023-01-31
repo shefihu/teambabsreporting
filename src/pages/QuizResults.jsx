@@ -32,7 +32,6 @@ export const QuizResults = () => {
 
   const evaluate = (que, cookie) => {
     let score = 0;
-    console.log(que);
     for (let i = 0; i < que.length; i++) {
       if (que[i].optionSelected == que[i].answer) {
         score = score + 1;
