@@ -4,11 +4,13 @@ import { SlNote } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import { baseUrl } from "../../../constants/Base";
 import { editpostAction } from "../../../redux/PostSlice";
 
 export default function EditPost({ body, image, title, slug }) {
   let [isOpen, setIsOpen] = useState(false);
-
+  const [tit, setTit] = useState(title);
+  const [bod, setBod] = useState(body);
   const dispatch = useDispatch();
   function closeModal() {
     setIsOpen(false);
@@ -28,7 +30,7 @@ export default function EditPost({ body, image, title, slug }) {
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -62,7 +64,7 @@ export default function EditPost({ body, image, title, slug }) {
                   <div className="mt-6 w-full h-60">
                     <img
                       crossOrigin="anonymous"
-                      src={` https://teambabs-server-bolu1.koyeb.app/api${image}`}
+                      src={`${baseUrl}${image}`}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -70,10 +72,11 @@ export default function EditPost({ body, image, title, slug }) {
 
                   <div className="mt-10">
                     <textarea
-                      value={body}
-                      //   dangerouslySetInnerHTML={{
-                      //     __html: body?.replace(/\n/g, "<br/>"),
-                      //   }}
+                      value={bod}
+                      onChange={(e) => setBod(e.target.value)}
+                      // dangerouslySetInnerHTML={{
+                      //   __html: bod?.replace(/\n/g, "<br/>"),
+                      // }}
                       className="text-xl px-3 py-3 w-full h-[40rem]"
                     />
                   </div>

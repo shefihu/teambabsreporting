@@ -54,7 +54,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
   return (
     <>
       <div className="w-full h-full lg:flex hidden ">
-        <div className="w-[20%] bg-white z-50 h-full drop-shadow-lg left-0 top-0 fixed ">
+        <div className="w-[20%] bg-white z-30 h-full drop-shadow-lg left-0 top-0 fixed ">
           <div className="flex flex-col items-center">
             <div className="mt-10">
               <img src={logo} alt="" />
@@ -126,7 +126,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
           initial={"closed"}
           animate={"open"}
           variants={sidebarVariant}
-          className="w-[60%] bg-white z-50 shadow-xl h-full left-0 top-0 fixed "
+          className="w-[60%] bg-white z-30 shadow-xl h-full left-0 top-0 fixed "
         >
           <div className="flex flex-col items-center relative">
             {isOpen === true && (

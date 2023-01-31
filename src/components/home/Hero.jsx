@@ -145,7 +145,7 @@ const Hero = ({ data, loadingLatest }) => {
         </div>
         <div className="lg:hidden flex flex-col space-y-4 h-full py-4   ">
           <div className="h-[15rem]  overflow-hidden relative w-full rounded-2xl">
-            <div className="w-full h-full absolute bg-gray-300/5 backdrop-blur-sm  z-10 top-0"></div>
+            <div className="w-full h-full absolute bg-gray-600/20 backdrop-blur-sm  z-10 top-0"></div>
             <a
               href={`/post/${post?.slug}`}
               key={index}

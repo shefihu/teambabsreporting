@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
 import Navbar from "../layout/Navbar";
+import { Link } from "react-router-dom";
 
 export const QuizResults = () => {
   const [answers, setAnswers] = useState([
@@ -45,7 +46,10 @@ export const QuizResults = () => {
     <div>
       <Navbar />
       <div className="w-full mt-20 h-60 flex space-y-4 flex-col items-center justify-center">
-        <h1>Well done</h1>
+        {score < 50 && <h1>Try harder next time</h1>}
+        {score === 50 && <h1>You can do better</h1>}
+        {score > 50 && <h1>Well done!!!</h1>}
+
         <div className="lg:w-[251px] w-[210px] h-[14px] bg-transparent overflow-hidden border border-[#191919] rounded-[4px]">
           <div
             className="bg-[#191919] text-xs font-medium text-blue-100 h-[14px] text-center rounded-l-[4px]"
@@ -53,6 +57,12 @@ export const QuizResults = () => {
           ></div>
         </div>
         <p>{score}%</p>
+        <Link
+          to={"/quiz"}
+          className="w-[140px] h-[35px] bg-black text-white flex justify-center items-center rounded-[8px] font-bold"
+        >
+          Try Again
+        </Link>
       </div>
     </div>
   );

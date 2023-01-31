@@ -45,6 +45,15 @@ const SinglePost = () => {
           name="description"
           content={singlePost?.body?.substring(0, 180)}
         />
+        {/* End standard metadata tags */}
+        {/* Facebook tags */}
+        <meta property="og:type" content={singlePost?.category} />
+        <meta property="og:image" content={singlePost?.image} />
+        <meta property="og:title" content={singlePost?.title} />
+        <meta
+          property="og:description"
+          content={singlePost?.body?.substring(0, 180)}
+        />
       </Helmet>
 
       <Navbar />

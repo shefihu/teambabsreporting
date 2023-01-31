@@ -29,7 +29,7 @@ export default function DeletePost({ id }) {
         <BiTrash className="lg:w-[28px] lg:h-[28px] w-[20px] h-[20px]" />
       </button>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

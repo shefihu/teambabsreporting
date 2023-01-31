@@ -67,7 +67,6 @@ export default function AddPost() {
             },
           }
         );
-        window.location = "/dashboard/home";
       } catch (error) {
         // toast.error(error.response.data.message);
       }
@@ -85,7 +84,6 @@ export default function AddPost() {
       setFileNames((prev) => [...prev, e.target.files[i]]);
     }
   };
-  console.log(fileNames);
   return (
     <>
       <button
@@ -96,7 +94,7 @@ export default function AddPost() {
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

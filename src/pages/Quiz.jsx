@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../layout/Navbar";
 import quiz from "../assets/images/quiz.png";
 import under from "../assets/images/under.jpg";
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 const Quiz = () => {
   const [course, setCourse] = useState("GNS212");
+  useEffect(() => {
+    Cookies.remove("answers");
+  }, []);
   return (
     <div>
       <Navbar />

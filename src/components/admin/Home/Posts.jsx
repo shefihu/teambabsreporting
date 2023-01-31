@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from "timeago.js";
 import { baseUrl } from "../../../constants/Base";
 import AddPost from "../modals/AddPost";
 import DeletePost from "../modals/DeletPost";
@@ -6,6 +7,12 @@ import EditPost from "../modals/EditPost";
 import Post from "./Post";
 
 const Posts = ({ data, loading }) => {
+  const datejs = (timeStamp) => {
+    var date = new Date(timeStamp + "Z");
+
+    // console.log(Date.parse(date));
+    return format(Date.parse(date));
+  };
   return (
     <>
       {loading ? (
@@ -115,8 +122,8 @@ const Posts = ({ data, loading }) => {
                         <p className="text-[#808080]/70 font-bold">
                           {post.posted_by}
                         </p>
-                        <p className="text-[#808080]/70 font-bold">
-                          December 10
+                        <p className="text-[#808080]/70 text-[13px] font-bold">
+                          {datejs(post?.created_at)}
                         </p>
                         <div className="w-[124px] h-full space-x-3 flex items-center ">
                           <EditPost

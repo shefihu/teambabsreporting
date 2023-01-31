@@ -110,7 +110,7 @@ const QuizQuestion = () => {
       {!loadingQuiz ? (
         <>
           {" "}
-          <div className="w-full h-20 mt-32 flex items-center px-5 justify-between">
+          <div className="w-full h-10 mt-32  flex items-center px-5 justify-between">
             {unique.map((name, index) => {
               return (
                 <div key={index}>
@@ -119,7 +119,7 @@ const QuizQuestion = () => {
               );
             })}
           </div>
-          <div className="mt-20">
+          <div className="mt-10 py-5">
             {answers &&
               answers?.map((question, index) => {
                 return (
