@@ -8,7 +8,7 @@ import { fetchQuestions } from "../../redux/quizSlice";
 const DashboardQuiz = () => {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
-  const [course, setCourse] = useState("GNS212");
+  const [course, setCourse] = useState("putme");
   const { quizQuestions, loadingQuiz } = useSelector((state) => state.quiz);
   // const handleDelete = (id) => {
   //   dispatch(deleteAdmin(id, token));

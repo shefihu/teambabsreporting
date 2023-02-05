@@ -7,7 +7,7 @@ import { Add } from "../../../redux/quizSlice";
 
 export default function AddQuestions() {
   let [isOpen, setIsOpen] = useState(false);
-  const [subject, setSubject] = useState("GNS212");
+  const [subject, setSubject] = useState("putme");
   const [question, setQuestion] = useState("");
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
