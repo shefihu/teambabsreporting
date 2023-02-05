@@ -4,9 +4,11 @@ import Cookies from "js-cookie";
 const initialState = {
   loading: false,
   loadingQuiz: true,
+  loadingDelete: false,
   error: null,
   addquiz: {},
   quizQuestions: [],
+  deletequestion: {},
 };
 const postSlice = createSlice({
   name: "quiz",
@@ -40,6 +42,20 @@ const postSlice = createSlice({
       state.error = action.payload.error;
       state.quizQuestions = null;
     },
+    deletequestionStart(state) {
+      state.loadingDelete = true;
+      state.error = null;
+    },
+    deletequestionSuccess(state, action) {
+      state.loadingDelete = false;
+      state.error = null;
+      state.deletequestion = action.payload.deletequestion;
+    },
+    deletequestionFailure(state, action) {
+      state.loadingDelete = false;
+      state.error = action.payload.error;
+      state.deletequestion = null;
+    },
   },
 });
 export const {
@@ -49,6 +65,9 @@ export const {
   questionStart,
   questionSuccess,
   questionFailure,
+  deletequestionStart,
+  deletequestionSuccess,
+  deletequestionFailure,
 } = postSlice.actions;
 export const Add =
   (
@@ -84,8 +103,13 @@ export const Add =
           },
         }
       );
-      dispatch(quizSuccess({ addpost: response.data }));
-      window.location = "/dashboard/home";
+      dispatch(quizSuccess({ addquiz: response.data }));
+      toast.success(
+        "Your Question was addd successfully, You will be redirected shortly"
+      );
+      setTimeout(() => {
+        window.location = "/dashboard/quiz";
+      }, 3000);
     } catch (error) {
       console.log(error);
 
@@ -103,11 +127,41 @@ export const fetchQuestions = (course) => async (dispatch) => {
     const questions = await axios.get(
       `https://babsreporting-server.babsreporting.com/api/quiz/questions/${course}`
     );
-    console.log(questions);
     dispatch(questionSuccess({ quizQuestions: questions?.data.data }));
   } catch (error) {
     console.log(error);
     dispatch(questionFailure({ error }));
   }
 };
+export const deleteQuestion =
+  (id, token, toast, setIsOpen) => async (dispatch, getState) => {
+    try {
+      dispatch(deletequestionStart());
+
+      const response = await axios.delete(
+        `https://babsreporting-server.babsreporting.com/api/quiz/question/${id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      dispatch(deletequestionSuccess({ deletequestion: response.data }));
+      // if (response.status === "200") {
+      //   setIsOpen(false);
+      // }
+      window.location = "/dashboard/quiz";
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error.response && error.response.data.message && error.message
+          ? error.response.data.message
+          : error.data
+      );
+      dispatch(deletequestionFailure({ error }));
+    }
+  };
 export default postSlice.reducer;

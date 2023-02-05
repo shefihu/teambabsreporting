@@ -136,6 +136,7 @@ export default function AddQuestions() {
                         id=""
                         className="h-[50px] w-full border rounded-[8px] outline-none bg-transparent border-black"
                       >
+                        <option value="">Choose Answer</option>
                         <option value="1">Option A</option>
                         <option value="2">Option B</option>
                         <option value="3">Option C</option>

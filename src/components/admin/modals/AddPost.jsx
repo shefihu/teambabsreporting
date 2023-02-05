@@ -16,6 +16,7 @@ export default function AddPost() {
   let [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState("education");
   const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
   const [loader, setLoader] = useState(false);
   const [content, setContent] = useState("");
   const [fileNames, setFileNames] = useState([]);
@@ -23,6 +24,7 @@ export default function AddPost() {
   const formData = new FormData();
   formData.append("image", image); // imageFile is a File object
   formData.append("title", title);
+  formData.append("slug", slug);
   formData.append("content", content);
   formData.append("category", categories);
   function closeModal() {
@@ -166,6 +168,13 @@ export default function AddPost() {
                         onChange={(e) => setTitle(e.target.value)}
                         className="w-full py-2  font-extrabold outline-none border-b border-b-black"
                         placeholder="Title"
+                      />
+                      <input
+                        type="text"
+                        name="slug"
+                        onChange={(e) => setSlug(e.target.value)}
+                        className="w-full py-2  font-extrabold outline-none border-b border-b-black"
+                        placeholder="Slug"
                       />
 
                       <ReactQuill

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
 import Header from "../components/category/Header";
 import Posts from "../components/category/Posts";
+import Footer from "../layout/Footer";
 import Navbar from "../layout/Navbar";
 import { fetchPostByCategory } from "../redux/PostSlice";
 
@@ -47,6 +48,7 @@ const Category = () => {
           <Posts data={postByCat} loadingPostCat={loadingPostCat} />
         </>
       )}
+      <Footer />
     </div>
   );
 };

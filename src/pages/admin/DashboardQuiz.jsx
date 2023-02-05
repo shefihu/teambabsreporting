@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import AddQuestions from "../../components/admin/modals/AddQuestions";
+import DeleteQuestion from "../../components/admin/modals/DeleteQuestion";
 import { fetchQuestions } from "../../redux/quizSlice";
 
 const DashboardQuiz = () => {
@@ -95,6 +96,9 @@ const DashboardQuiz = () => {
                             </td>
                             <td className="px-4 py-3 text-ms font-semibold ">
                               {question.option_four}
+                            </td>
+                            <td>
+                              <DeleteQuestion id={question.slug} />
                             </td>
                           </tr>
                         );

@@ -263,7 +263,6 @@ export const deletePost =
         setIsOpen(false);
       }
       window.location = "/dashboard/home";
-      console.log(response);
     } catch (error) {
       console.log(error);
       toast.error(

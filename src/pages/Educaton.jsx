@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../components/education/Header";
 import Posts from "../components/education/Posts";
+import Footer from "../layout/Footer";
 import Navbar from "../layout/Navbar";
 
 const Educaton = () => {
@@ -15,6 +16,7 @@ const Educaton = () => {
       <Navbar />
       <Header />
       <Posts />
+      <Footer />
     </div>
   );
 };

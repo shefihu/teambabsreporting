@@ -6,7 +6,7 @@ const Footer = () => {
   const year = date.getFullYear();
   return (
     <div className="w-full bg-[#808080]/20">
-      <div className="w-full xl:max-w-[85rem]  h-32 py-6 px-4  mx-auto">
+      <div className="w-full xl:max-w-[85rem]  h-full py-6 px-4  mx-auto">
         <div className="w-full h-full lg:flex hidden justify-between items-center">
           <h1>© Copyright {year}. All Rights Reserved.</h1>
           <div>
@@ -20,6 +20,20 @@ const Footer = () => {
               <NavLink>About us</NavLink>
             </li>
           </div>
+        </div>
+        <div className="w-full h-full lg:hidden flex flex-col space-y-4  items-center">
+          <div>
+            <img src={logo} alt="" />
+          </div>
+          <div className="flex space-x-6">
+            <li className="list-none">
+              <NavLink>Contact us</NavLink>
+            </li>
+            <li className="list-none">
+              <NavLink>About us</NavLink>
+            </li>
+          </div>
+          <h1>© Copyright {year}. All Rights Reserved.</h1>
         </div>
       </div>
     </div>

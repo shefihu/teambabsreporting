@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { BiCheck, BiCopy } from "react-icons/bi";
 import { format } from "timeago.js";
 import { baseUrl } from "../../../constants/Base";
 import AddPost from "../modals/AddPost";
@@ -13,6 +14,18 @@ const Posts = ({ data, loading }) => {
     // console.log(Date.parse(date));
     return format(Date.parse(date));
   };
+  // const pText = `https://evergreenffx.com/?invite-code=${ref_id}`;
+  // const pText = `http://127.0.0.1:5173/?invite_code=${ref_id}`;
+  const [copied, setCopied] = useState(false);
+  function copyToClipboard(pText) {
+    // this won't work in development but only in production because of its secure https protocol
+    navigator.clipboard.writeText(pText);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  }
+
   return (
     <>
       {loading ? (
@@ -101,6 +114,7 @@ const Posts = ({ data, loading }) => {
             <div className="relative w-full">
               <AddPost />
             </div>
+            `
             <div className="lg:hidden grid  grid-cols-1  px-3 h-full w-full gap-4">
               {data?.map((post, index) => {
                 return (
@@ -126,12 +140,25 @@ const Posts = ({ data, loading }) => {
                           {datejs(post?.created_at)}
                         </p>
                         <div className="w-[124px] h-full space-x-3 flex items-center ">
-                          <EditPost
+                          {/* <EditPost
                             body={post.body}
                             image={post.image}
                             title={post.title}
                             slug={post.slug}
-                          />
+                          /> */}
+                          <button
+                            onClick={() =>
+                              copyToClipboard(
+                                `https://babsreporting.com/post/${post.slug}`
+                              )
+                            }
+                          >
+                            {!copied ? (
+                              <BiCopy className="lg:w-[28px] lg:h-[28px] w-[20px] h-[20px]" />
+                            ) : (
+                              <BiCheck className="lg:w-[28px] lg:h-[28px] w-[20px] h-[20px]" />
+                            )}
+                          </button>
                           <DeletePost id={post.slug} />
                         </div>
                       </div>

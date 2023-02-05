@@ -22,8 +22,13 @@ const TopLayer = ({ singlePost }) => {
             />
           </div>
           <div className="mt-6 h-full">
-            <h6>{datejs(singlePost?.created_at)}</h6>
-            <h1 className="text-4xl font-semibold">{singlePost?.title}</h1>
+            <div className="flex space-x-6 items-center">
+              <h6>{datejs(singlePost?.created_at)}</h6>
+              <h6 className="text-lg font-bold">By {singlePost?.posted_by}</h6>
+            </div>
+            <h1 className="lg:text-4xl text-2xl mt-4 font-semibold">
+              {singlePost?.title}
+            </h1>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Helmet from "react-helmet";
 import Header from "../components/news/Header";
 import Posts from "../components/news/Posts";
+import Footer from "../layout/Footer";
 import Navbar from "../layout/Navbar";
 
 const News = () => {
@@ -21,6 +22,7 @@ const News = () => {
       <Navbar />
       <Header />
       <Posts />
+      <Footer />
     </div>
   );
 };

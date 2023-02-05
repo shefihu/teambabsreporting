@@ -16,7 +16,7 @@ const BottomLayer = (props) => {
           dangerouslySetInnerHTML={{
             __html: singlePost?.body?.replace(/\n/g, "<br/>"),
           }}
-          className="text-xl"
+          className="lg:text-xl text-lg"
         />
         <div className="grid lg:grid-cols-3 mt-10 gap-10">
           {attachments?.map(() => {
